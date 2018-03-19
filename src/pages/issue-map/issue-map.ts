@@ -25,7 +25,7 @@ export class IssueMapPage {
       layers: [
         tileLayer(tileLayerUrl, tileLayerOptions)
       ],
-      zoom: 13,
+      zoom: 16,
       center: latLng(46.778186, 6.641524)
     };
 

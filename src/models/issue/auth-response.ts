@@ -1,4 +1,4 @@
-import { User } from './user';
+import { Issue } from './issue';
 
 export class AuthResponse {
   token: string;

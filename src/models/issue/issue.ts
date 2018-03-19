@@ -1,8 +1,9 @@
-export class User {
-    id: string;
-    href: string;
-    name: string;
-    firstname: string;
-    lastname: string;
-    roles: string[];
+export class Issue {
+    id: number;
+    description: string;
+    imageUrl: string;
+    latitude: number;
+    longitude: number;
+    tags: string[];
+    user:number;
   }

@@ -36,3 +36,4 @@ UserInterfaceState.xcuserstate
 
 src/app/config.*
 !src/app/config.sample.ts
+!www/build/main.css

@@ -3,7 +3,7 @@ import { NavController } from 'ionic-angular';
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
-import { AuthRequest } from '../../models/auth-request';
+import { AuthRequest } from '../../models/user/auth-request';
 import { AuthProvider } from '../../providers/auth/auth';
 
 /**

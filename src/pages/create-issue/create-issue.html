@@ -16,6 +16,7 @@
 <ion-content padding>
   <ion-title>Let's create an issue</ion-title>
   <button ion-button (click)='takePicture()'>New</button>
+
   <img *ngIf='pictureData' src='data:image/jpeg;base64,{{ pictureData }}' />
     <!-- Logout button -->
     <ion-buttons end>

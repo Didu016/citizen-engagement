@@ -3,9 +3,9 @@ import { Injectable } from '@angular/core';
 import { Observable, ReplaySubject } from 'rxjs/Rx';
 import { config } from '../../app/config';
 
-import { AuthRequest } from '../../models/auth-request';
-import { AuthResponse } from '../../models/auth-response';
-import { User } from '../../models/user';
+import { AuthRequest } from '../../models/user/auth-request';
+import { AuthResponse } from '../../models/user/auth-response';
+import { User } from '../../models/user/user';
 import { delayWhen, map } from 'rxjs/operators';
 import { Storage } from '@ionic/storage';
 

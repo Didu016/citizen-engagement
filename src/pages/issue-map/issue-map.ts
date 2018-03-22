@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { latLng, Map, MapOptions, marker, Marker, tileLayer } from 'leaflet';
 
+//Cicci 
+import { Geolocation } from '@ionic-native/geolocation';
+
 /**
  * Generated class for the IssueMapPage page.
  *
@@ -18,7 +21,7 @@ export class IssueMapPage {
   mapMarkers: Marker[];
   map: Map;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private geolocation: Geolocation) {
     const tileLayerUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     const tileLayerOptions = { maxZoom: 18 };
     this.mapOptions = {
@@ -38,6 +41,15 @@ export class IssueMapPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad IssueMapPage');
+
+    //Cicci
+    const geolocationPromise = this.geolocation.getCurrentPosition();
+    geolocationPromise.then(position => {
+      const coords = position.coords;
+      console.log(`User is at ${coords.longitude}, ${coords.latitude}`);
+    }).catch(err => {
+      console.warn(`Could not retrieve user position because: ${err.message}`);
+    });
   }
 
   onMapReady(map: Map) {

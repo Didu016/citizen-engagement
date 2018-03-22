@@ -3,11 +3,13 @@ import { NavController, NavParams } from 'ionic-angular';
 import { config } from '../../app/config';
 import { Geolocation } from '@ionic-native/geolocation';
 
+
 // Other imports...
 // TODO: import the authentication provider and login page.
 import { AuthProvider } from '../../providers/auth/auth';
 import { HttpClient } from '@angular/common/http';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+
 
 /**
  * Generated class for the CreateIssuePage page.

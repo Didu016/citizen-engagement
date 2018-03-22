@@ -15,13 +15,30 @@
 
 <ion-content padding>
   <ion-title>Let's create an issue</ion-title>
-  <button ion-button (click)='takePicture()'>New</button>
+
+  <ion-item>
+    <ion-label floating>Description</ion-label>
+    <ion-textarea></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>HashTags</ion-label>
+    <ion-tags-input [(ngModel)]="tags"></ion-tags-input>
+  </ion-item>
+  
+  <button id ="btn_takePicture" ion-button (click)='takePicture()'>
+    Take a picture
+    <ion-icon ios="ios-camera" md="md-camera"></ion-icon>
+  </button>
 
   <img *ngIf='pictureData' src='data:image/jpeg;base64,{{ pictureData }}' />
-    <!-- Logout button -->
+
+  <button ion-button block color="danger" (click)='takePicture()'>Save issue</button>
+    
+    <!-- Logout button 
     <ion-buttons end>
       <button ion-button icon-only (click)='logOut()'>
         <ion-icon name='log-out'></ion-icon>
       </button>
-    </ion-buttons>  
+    </ion-buttons>  -->
 </ion-content>

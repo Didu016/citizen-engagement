@@ -10,6 +10,8 @@ import { Camera } from '@ionic-native/camera';
 import { Geolocation } from '@ionic-native/geolocation';
 import { FormsModule } from '@angular/forms';
 
+import {IonTagsInputModule} from "ionic-tags-input";
+
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { RegisterPage } from './../pages/register/register';
@@ -39,6 +41,7 @@ import { AuthInterceptorProvider } from '../providers/auth-interceptor/auth-inte
     HttpClientModule,
     IonicStorageModule.forRoot(),
     LeafletModule.forRoot(),
+    IonTagsInputModule,
     FormsModule   
   ],
   bootstrap: [IonicApp],

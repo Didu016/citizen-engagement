@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { config } from '../../app/config';
 import { Geolocation } from '@ionic-native/geolocation';
+import { NgForm } from '@angular/forms';
 
 
 // Other imports...
@@ -26,6 +27,8 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 export class CreateIssuePage {
   pictureData: string;
 
+  tags = ['Broken','Missing','Trouble','Light','Door'];
+
   constructor(    
     private auth: AuthProvider,    
     public http: HttpClient,
@@ -35,6 +38,7 @@ export class CreateIssuePage {
     private camera: Camera
   ) {
   }
+
 
   // TODO: add a method to log out.
   logOut() {

@@ -8,12 +8,19 @@
 
   <ion-navbar>
     <ion-title>CreateIssue</ion-title>
+        <!-- Logout button  -->
+    <ion-buttons end>
+      <button ion-button icon-only (click)='logOut()'>
+        <ion-icon name='log-out'></ion-icon>
+      </button>
+    </ion-buttons> 
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+<!--<form (submit)='onSubmit($event)'>-->
   <ion-title>Let's create an issue</ion-title>
 
   <ion-item>
@@ -21,13 +28,10 @@
     <ion-textarea></ion-textarea>
   </ion-item>
 
-  <ion-item>
-    <ion-label>HashTags</ion-label>
-    <ion-tags-input [(ngModel)]="tags"></ion-tags-input>
-  </ion-item>
-  
+ <!--HASHTAG link https://www.npmjs.com/package/ionic-tags-input-->
+  <ion-tags-input [(ngModel)]="tags"  [placeholder]="'add tag'"></ion-tags-input>
+
   <button id ="btn_takePicture" ion-button (click)='takePicture()'>
-    Take a picture
     <ion-icon ios="ios-camera" md="md-camera"></ion-icon>
   </button>
 
@@ -35,10 +39,6 @@
 
   <button ion-button block color="danger" (click)='takePicture()'>Save issue</button>
     
-    <!-- Logout button 
-    <ion-buttons end>
-      <button ion-button icon-only (click)='logOut()'>
-        <ion-icon name='log-out'></ion-icon>
-      </button>
-    </ion-buttons>  -->
+
+    <!--</form>-->
 </ion-content>

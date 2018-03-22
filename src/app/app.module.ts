@@ -21,6 +21,7 @@ import { AuthProvider } from '../providers/auth/auth';
 import { DetailsPage } from '../pages/details/details';
 
 import { AuthInterceptorProvider } from '../providers/auth-interceptor/auth-interceptor';
+import { ProvidersUserProvider } from '../providers/providers-user/providers-user';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { AuthInterceptorProvider } from '../providers/auth-interceptor/auth-inte
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthProvider,    
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorProvider, multi: true },
-    Camera
+    Camera,
+    ProvidersUserProvider
   ]
 })
 export class AppModule {}

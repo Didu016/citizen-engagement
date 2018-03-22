@@ -1,3 +1,8 @@
+import { ProvidersUserProvider } from './../../providers/providers-user/providers-user';
+import { config } from './../../app/config.sample';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Rx';
+import { User } from './../../models/user/user';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
@@ -19,7 +24,9 @@ export class RegisterPage {
   staff: boolean;
 
   constructor(public navCtrl: NavController, 
-              public navParams: NavParams) {
+              public navParams: NavParams,
+              private userProvider: ProvidersUserProvider,
+              private httpClient: HttpClient) {
                 this.firstName = '';
                 this.lastName = '';
                 this.role = 'staff';
@@ -29,7 +36,7 @@ export class RegisterPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RegisterPage');
+    this.userProvider.getUser().subscribe(users => console.log(users));
   }
 
   updateRole(){
@@ -37,6 +44,10 @@ export class RegisterPage {
       this.role = 'staff';
     else
       this.role = 'citizen';
+  }
+
+  postUser(){
+
   }
 
 }

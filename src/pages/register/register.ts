@@ -16,14 +16,14 @@ export class RegisterPage {
   firstName: string;
   lastName: string;
   role: string;
-  manager: boolean;
+  staff: boolean;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams) {
                 this.firstName = '';
                 this.lastName = '';
-                this.role = 'citizen';
-                this.manager = false;
+                this.role = 'staff';
+                this.staff = false;
                 
 
   }
@@ -33,8 +33,8 @@ export class RegisterPage {
   }
 
   updateRole(){
-    if (this.manager)
-      this.role = 'manager';
+    if (this.staff)
+      this.role = 'staff';
     else
       this.role = 'citizen';
   }

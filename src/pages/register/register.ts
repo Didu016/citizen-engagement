@@ -5,6 +5,7 @@ import { Observable } from 'rxjs/Rx';
 import { User } from './../../models/user/user';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { NgForm } from '@angular/forms';
 
 /**
  * Generated class for the RegisterPage page.
@@ -50,6 +51,15 @@ export class RegisterPage {
       this.user.roles = ['citizen'];
     }    
       
+  }
+
+  sendUser(form: NgForm){
+    if (form.valid){
+      console.log(this.user);
+      console.log(form.value);
+      this.userProvider.addUser(this.user);
+    }
+
   }
 
   addUser(user: User): Observable<User>{

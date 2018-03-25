@@ -3,7 +3,9 @@ import { User } from './../../models/user/user';
 import { Observable } from 'rxjs/Rx';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
+
+const apiUser = `${config.apiUrl}/users`;
 
 /*
   Generated class for the UserProvider provider.
@@ -16,15 +18,18 @@ export class UserProvider {
 
   constructor(public httpClient: HttpClient) {   }
 
-  getUser(): Observable<User> {
-    const apiUser = `${config.apiUrl}/users`;
+  getUser(): Observable<User> {    
     
     return this.httpClient
       .get<User>(apiUser)
   }
 
   addUser(user: User):  Observable<User> {
-    return this.httpClient.post<User>(config.apiUrl, user);    
+    let newUser;
+     this.httpClient.post<User>(apiUser, user).subscribe(response => {
+      newUser = response['data'];
+     });
+     return newUser;
   }
 
 }

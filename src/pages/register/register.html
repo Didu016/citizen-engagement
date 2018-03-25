@@ -14,31 +14,48 @@
 
 
 <ion-content padding>
+    <form #registerForm='ngForm' (submit)='sendUser(registerForm)'>
+        <!-- AJOUTER LES AVERTISSMENT AVEC #input (exepmle #nameInput)
+        Checker si le username existe deja -->
       <ion-list>
             <ion-item>
                     <ion-label color="primary">Username</ion-label>
-                    <ion-input placeholder='ex: \"Jdoe\"' [(ngModel)]='user.name'></ion-input>
+                    <ion-input placeholder='ex: \"Jdoe\"' 
+                    [(ngModel)]='user.name'
+                    #nameInput='ngModel'                     
+                    name='name' required maxlength=25></ion-input>
             </ion-item>
             <ion-item>
                     <ion-label fixed>Password</ion-label>
-                    <ion-input type="password" [(ngModel)]='user.password'></ion-input>
+                    <ion-input type="password" 
+                    [(ngModel)]='user.password'
+                    name='password' required minlength=4></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label color="primary">FirstName</ion-label>
-                <ion-input placeholder='ex: \"John\"' [(ngModel)]='user.firstname'></ion-input>
+                <ion-input placeholder='ex: \"John\"' 
+                [(ngModel)]='user.firstname'
+                name='firstname' required minlength=2 maxlength=25></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label color="primary">Lastname</ion-label>
-                <ion-input placeholder='ex: \"Doe\"' [(ngModel)]='user.lastname'></ion-input>
+                <ion-input placeholder='ex: \"Doe\"' 
+                [(ngModel)]='user.lastname'
+                name='lastname' required minlength=2 maxlength=25></ion-input>
             </ion-item>
             <ion-item>
                     <ion-label color="primary">Phone Number</ion-label>
-                    <ion-input placeholder='ex: \"(460) 614-2120\"' [(ngModel)]='user.phone'></ion-input>
+                    <ion-input placeholder='ex: \"(460) 614-2120\"' 
+                    [(ngModel)]='user.phone'
+                    name='phone' maxlength=20></ion-input>
                 </ion-item>
             <ion-item>
                 <ion-label>Manager</ion-label>
-                <ion-checkbox [(ngModel)]="staff" (ionChange)="updateRole()"></ion-checkbox>                
+                <ion-checkbox [(ngModel)]="staff"
+                name='roles' 
+                (ionChange)="updateRole()"></ion-checkbox>                
             </ion-item>        
-            <button ion-button>Submit</button> 
-      </ion-list>      
+            <button ion-button type='submit' [disabled]='registerForm.invalid'>Submit</button> 
+      </ion-list>
+    </form>
 </ion-content>

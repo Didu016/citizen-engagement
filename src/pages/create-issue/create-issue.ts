@@ -1,3 +1,5 @@
+import { IssueProvider } from './../../providers/providers-issue/providers-issue';
+import { Point } from 'geojson';
 import { IssueType } from './../../models/issue-type/issue-type';
 import { IssueTypeProvider } from './../../providers/issue-type/providers-issue-type';
 import { Issue } from './../../models/issue/issue';
@@ -35,7 +37,7 @@ export class CreateIssuePage {
   newIssue: Issue;  
   issueTypes: IssueType;
 
-  tags = ['Broken','Missing','Trouble','Light','Door'];
+  tags = ['Broken','Light','Trouble'];
 
   constructor(    
     private auth: AuthProvider,    
@@ -45,27 +47,34 @@ export class CreateIssuePage {
     private geolocation: Geolocation,
     private camera: Camera,
     private pictureService: PictureProvider,
-    private IssueTypeProvider: IssueTypeProvider
+    private IssueTypeProvider: IssueTypeProvider,
+    private IssueProvider: IssueProvider
   ) {
     this.newIssue = {
       description: '',
       imageUrl: '',
+      additionalImageUrls: '',
       issueTypeHref: '',
-      latitude: 0,
-      longitude: 0,
+      location: {
+        "type": "Point",
+        "coordinates": [
+            0,
+            0
+        ]
+    },
       tags: this.tags,
-      user: ''
     }
   }
 
 
-  // TODO: add a method to log out.
+  //Method to log out.
   logOut() {
     this.auth.logOut();
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CreateIssuePage');
+    console.log(this.newIssue);
 
     //Load issue types
     this.IssueTypeProvider.getIssueType().subscribe(issueTypes => {
@@ -73,21 +82,31 @@ export class CreateIssuePage {
       this.issueTypes = issueTypes;      
     }, err => {
       console.warn('Could not get issue types', err);
-    });
+    });    
 
-    // // TODO: replace the hardcoded API URL by the one from the configuration.
     // const url = `${config.apiUrl}/issueTypes`;
     // this.http.get(url).subscribe(issueTypes => {
     //   console.log('Issue types loaded', issueTypes);
     // });
-
-    const geolocationPromise = this.geolocation.getCurrentPosition();
-    geolocationPromise.then(position => {
+    
+    //Get current positions and assign to issue
+    const geolocationPromise = this.geolocation.getCurrentPosition();    
+    geolocationPromise.then(position => {      
       const coords = position.coords;
       console.log(`User is at ${coords.latitude}, ${coords.longitude}`);
+      this.newIssue.location = {
+        "type": "Point",
+        "coordinates": [
+          coords.longitude,
+          coords.latitude
+        ]
+    };
+      console.log(this.newIssue.location);
     }).catch(err => {
       console.warn(`Could not retrieve user position because: ${err.message}`);
-    });    
+    });
+    
+    
   }
 
   takePicture() {
@@ -107,11 +126,7 @@ export class CreateIssuePage {
 
   sendIssue() {
     //Load issue types
-    this.IssueTypeProvider.getIssueType().subscribe(issueTypes => {
-      console.log(issueTypes);      
-    }, err => {
-      console.warn('Could not get issue types', err);
-    });
+    this.IssueProvider
   }
 
 }

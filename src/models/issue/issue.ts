@@ -1,9 +1,9 @@
+import { Point } from 'geojson';
 export class Issue {    
     description: string;
     imageUrl: string;
-    issueTypeHref: string;
-    latitude: number;
-    longitude: number;
+    additionalImageUrls: string;
+    issueTypeHref: string;    
+    location: Point;
     tags: string[];
-    user:string;
   }

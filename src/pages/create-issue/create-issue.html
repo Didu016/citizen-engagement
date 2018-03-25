@@ -25,10 +25,12 @@
 
     <ion-item>
         <ion-label>Issue Type</ion-label>
-        <ion-select [(ngModel)]="issueTypeHref" name = 'issueTypeHref' interface="popover">
+        <ion-select [(ngModel)]="newIssue.issueTypeHref" 
+        name = 'issueTypeHref' required 
+        interface="popover">
           <ion-option *ngFor='let issuetype of issueTypes' value='{{issuetype.href}}'>{{ issuetype.name }}</ion-option>          
-        </ion-select>
-      </ion-item>
+        </ion-select>        
+      </ion-item>      
 
     <ion-item>
       <ion-label floating>Description</ion-label>
@@ -49,7 +51,7 @@
 
     <img *ngIf='pictureData' src='data:image/jpeg;base64,{{ pictureData }}' />
 
-    <button ion-button block color="danger" type="submit" >Save issue</button>
+    <button ion-button block color="danger" type="submit" [disabled]='createIssueForm.invalid'>Save issue</button>
 
 
   </form>

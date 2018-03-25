@@ -20,7 +20,7 @@
 
 
 <ion-content padding>
-  <form #createIssueForm='ngForm' (submit)='sendIssue(registerForm)'>
+  <form #createIssueForm='ngForm' (submit)='sendIssue(createIssueForm)'>
     <ion-title>Let's create an issue</ion-title>
 
     <ion-item>
@@ -51,7 +51,7 @@
 
     <img *ngIf='pictureData' src='data:image/jpeg;base64,{{ pictureData }}' />
 
-    <button ion-button block color="danger" type="submit" [disabled]='createIssueForm.invalid'>Save issue</button>
+    <button ion-button block color="danger" type="submit" [disabled]='createIssueForm.invalid'>Create issue</button>
 
 
   </form>

@@ -4,6 +4,8 @@ import { Observable } from 'rxjs/Rx';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+const apiIssue = `${config.apiUrl}/issues`;
+
 /*
   Generated class for the sIssueProvider provider.
 
@@ -13,12 +15,23 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class IssueProvider {
 
-  constructor(public http: HttpClient) {
+  constructor(public httpClient: HttpClient) {
     console.log('Hello IssueProvider Provider');
   }
 
   getIssues(): Observable<Issue[]> {
-    return this.http.get<Issue[]>(config.apiUrl + '/issues?include=creator&include=issueType' );
+    return this.httpClient.get<Issue[]>(apiIssue + '?include=creator&include=issueType' );
+  }
+
+  addIssue(issue: Issue):  Observable<Issue> {
+    let newIssue;
+     this.httpClient.post<Issue>(apiIssue, issue).subscribe(response => {
+      newIssue = response;
+      console.log(newIssue);
+     }, err => {
+      console.warn('Could not post issue', err);
+    });
+     return newIssue;
   }
 
 }

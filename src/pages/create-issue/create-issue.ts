@@ -124,9 +124,12 @@ export class CreateIssuePage {
     });
   }
 
-  sendIssue() {
-    //Load issue types
-    this.IssueProvider
+  sendIssue(form: NgForm) {
+    if (form.valid){
+      console.log(this.newIssue);
+      console.log(form.value);
+      this.IssueProvider.addIssue(this.newIssue);
+    }
   }
 
 }

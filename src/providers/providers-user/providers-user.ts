@@ -26,10 +26,10 @@ export class UserProvider {
   }
 
   addUser(user: User):  Observable<User> {
-    let newUser;
+    let newUser;    
      this.httpClient.post<User>(apiUser, user).subscribe(response => {
-      newUser = response['data'];
-      console.log(newUser);
+      newUser = response;      
+      console.log("new User created");
      }, err => {
       console.warn('Could not post user', err);
     });

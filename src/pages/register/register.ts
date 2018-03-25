@@ -57,11 +57,7 @@ export class RegisterPage {
     if (form.valid){
       console.log(this.user);
       console.log(form.value);
-      this.userProvider.addUser(this.user).subscribe(user => {
-        console.log(user);      
-      }, err => {
-        console.warn('Could not get issue types', err);
-      });  
+      this.userProvider.addUser(this.user);
     }
 
   }

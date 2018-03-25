@@ -1,4 +1,4 @@
-export class User {
+export class UserResponse {
     id: string;
     href: string;
     name: string;    

@@ -6,6 +6,7 @@ import { Injectable } from '@angular/core';
 import { catchError, tap } from 'rxjs/operators';
 
 const apiUser = `${config.apiUrl}/users`;
+const apiMe = `${config.apiUrl}/me`;
 
 /*
   Generated class for the UserProvider provider.
@@ -28,8 +29,16 @@ export class UserProvider {
     let newUser;
      this.httpClient.post<User>(apiUser, user).subscribe(response => {
       newUser = response['data'];
-     });
+      console.log(newUser);
+     }, err => {
+      console.warn('Could not post user', err);
+    });
      return newUser;
+  }
+
+  getMe(){
+    return this.httpClient
+      .get<User>(apiMe)
   }
 
 }

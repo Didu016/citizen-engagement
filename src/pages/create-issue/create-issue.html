@@ -8,37 +8,49 @@
 
   <ion-navbar>
     <ion-title>CreateIssue</ion-title>
-        <!-- Logout button  -->
+    <!-- Logout button  -->
     <ion-buttons end>
       <button ion-button icon-only (click)='logOut()'>
         <ion-icon name='log-out'></ion-icon>
       </button>
-    </ion-buttons> 
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-<!--<form (submit)='onSubmit($event)'>-->
-  <ion-title>Let's create an issue</ion-title>
+  <form #createIssueForm='ngForm' (submit)='sendIssue(registerForm)'>
+    <ion-title>Let's create an issue</ion-title>
 
-  <ion-item>
-    <ion-label floating>Description</ion-label>
-    <ion-textarea></ion-textarea>
-  </ion-item>
+    <ion-item>
+        <ion-label>Issue Type</ion-label>
+        <ion-select [(ngModel)]="issueTypeHref" name = 'issueTypeHref' interface="popover">
+          <ion-option *ngFor='let issuetype of issueTypes' value='{{issuetype.href}}'>{{ issuetype.name }}</ion-option>          
+        </ion-select>
+      </ion-item>
 
- <!--HASHTAG link https://www.npmjs.com/package/ionic-tags-input-->
-  <ion-tags-input [(ngModel)]="tags"  [placeholder]="'add tag'"></ion-tags-input>
+    <ion-item>
+      <ion-label floating>Description</ion-label>
+      <ion-textarea 
+      [(ngModel)]='newIssue.description'
+      name = 'description'></ion-textarea>
+    </ion-item>
 
-  <button id ="btn_takePicture" ion-button (click)='takePicture()'>
-    <ion-icon ios="ios-camera" md="md-camera"></ion-icon>
-  </button>
+    <!--HASHTAG link https://www.npmjs.com/package/ionic-tags-input-->
+    <ion-tags-input 
+    [(ngModel)]="newIssue.tags" 
+    name = 'tags'
+    [placeholder]="'add tag'"></ion-tags-input>
 
-  <img *ngIf='pictureData' src='data:image/jpeg;base64,{{ pictureData }}' />
+    <button id="btn_takePicture" ion-button (click)='takePicture()'>
+      <ion-icon ios="ios-camera" md="md-camera"></ion-icon>
+    </button>
 
-  <button ion-button block color="danger" (click)='takePicture()'>Save issue</button>
-    
+    <img *ngIf='pictureData' src='data:image/jpeg;base64,{{ pictureData }}' />
 
-    <!--</form>-->
+    <button ion-button block color="danger" type="submit" >Save issue</button>
+
+
+  </form>
 </ion-content>

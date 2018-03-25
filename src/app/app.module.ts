@@ -25,6 +25,8 @@ import { DetailsPage } from '../pages/details/details';
 import { AuthInterceptorProvider } from '../providers/auth-interceptor/auth-interceptor';
 import { UserProvider } from '../providers/providers-user/providers-user';
 import { IssueProvider } from '../providers/providers-issue/providers-issue';
+import { PictureProvider } from '../providers/picture/picture';
+import { IssueTypeProvider } from '../providers/issue-type/providers-issue-type';
 
 @NgModule({
   declarations: [
@@ -66,7 +68,9 @@ import { IssueProvider } from '../providers/providers-issue/providers-issue';
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorProvider, multi: true },
     Camera,
     UserProvider,
-    IssueProvider
+    IssueProvider,
+    PictureProvider,
+    IssueTypeProvider
   ]
 })
 export class AppModule {}

@@ -18,5 +18,7 @@
     [leafletOptions]='mapOptions' [leafletLayers]='mapMarkers'
     (leafletMapReady)='onMapReady($event)'>
   </div>
-  <button ion-button block>Issue Button</button>
+  <div class="issues">
+      <button *ngFor='let issue of issues' ion-button full>{{issue.description}}</button>
+  </div>
 </ion-content>

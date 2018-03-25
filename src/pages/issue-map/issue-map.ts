@@ -1,9 +1,13 @@
+import { IssueProvider } from './../../providers/providers-issue/providers-issue';
+import { HttpClient } from '@angular/common/http';
+import { config } from './../../app/config';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { latLng, Map, MapOptions, marker, Marker, tileLayer } from 'leaflet';
 
 //Cicci 
 import { Geolocation } from '@ionic-native/geolocation';
+import { Issue } from '../../models/issue/issue';
 
 /**
  * Generated class for the IssueMapPage page.
@@ -20,8 +24,13 @@ export class IssueMapPage {
   mapOptions: MapOptions;
   mapMarkers: Marker[];
   map: Map;
+  issues: Issue[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private geolocation: Geolocation) {
+  constructor(public navCtrl: NavController, 
+              public navParams: NavParams, 
+              private geolocation: Geolocation,
+              public http: HttpClient,
+              public issueProvider: IssueProvider,) {
     const tileLayerUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     const tileLayerOptions = { maxZoom: 18 };
     this.mapOptions = {
@@ -41,6 +50,15 @@ export class IssueMapPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad IssueMapPage');
+
+    //Load issues
+    this.issueProvider.getIssues().subscribe(issues => {
+      console.log(issues);
+      this.issues = issues;
+    }, err => {
+      console.warn('Could not get issues', err);
+    });
+    
 
     //Cicci
     const geolocationPromise = this.geolocation.getCurrentPosition();

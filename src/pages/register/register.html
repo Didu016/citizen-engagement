@@ -15,18 +15,30 @@
 
 <ion-content padding>
       <ion-list>
-          <ion-item>
-              <ion-label color="primary">Prénom</ion-label>
-              <ion-input placeholder='ex: \"John\"' [(ngModel)]='firstName'></ion-input>
-          </ion-item>
-          <ion-item>
-              <ion-label color="primary">Nom</ion-label>
-              <ion-input placeholder='ex: \"Doe\"' [(ngModel)]='lastName'></ion-input>
-          </ion-item>
-          <ion-item>
-              <ion-label>Manager</ion-label>
-              <ion-checkbox [(ngModel)]="manager" (ionChange)="updateRole()"></ion-checkbox>
-          </ion-item>        
-          <button ion-button>Submit</button> 
+            <ion-item>
+                    <ion-label color="primary">Username</ion-label>
+                    <ion-input placeholder='ex: \"Jdoe\"' [(ngModel)]='name'></ion-input>
+            </ion-item>
+            <ion-item>
+                    <ion-label fixed>Password</ion-label>
+                    <ion-input type="password"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label color="primary">FirstName</ion-label>
+                <ion-input placeholder='ex: \"John\"' [(ngModel)]='firstName'></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label color="primary">Lastname</ion-label>
+                <ion-input placeholder='ex: \"Doe\"' [(ngModel)]='lastName'></ion-input>
+            </ion-item>
+            <ion-item>
+                    <ion-label color="primary">Phone Number</ion-label>
+                    <ion-input placeholder='ex: \"(460) 614-2120\"' [(ngModel)]='lastName'></ion-input>
+                </ion-item>
+            <ion-item>
+                <ion-label>Manager</ion-label>
+                <ion-checkbox [(ngModel)]="manager" (ionChange)="updateRole()"></ion-checkbox>
+            </ion-item>        
+            <button ion-button>Submit</button> 
       </ion-list>      
 </ion-content>

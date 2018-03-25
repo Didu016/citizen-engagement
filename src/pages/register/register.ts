@@ -1,4 +1,4 @@
-import { ProvidersUserProvider } from './../../providers/providers-user/providers-user';
+import { UserProvider } from './../../providers/providers-user/providers-user';
 import { config } from './../../app/config.sample';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
@@ -25,7 +25,7 @@ export class RegisterPage {
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
-              private userProvider: ProvidersUserProvider,
+              private userProvider: UserProvider,
               private httpClient: HttpClient) {
                 this.firstName = '';
                 this.lastName = '';
@@ -46,7 +46,8 @@ export class RegisterPage {
       this.role = 'citizen';
   }
 
-  postUser(){
+  addUser(user: User): Observable<User>{
+    return
 
   }
 

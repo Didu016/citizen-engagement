@@ -6,13 +6,13 @@ import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/operators';
 
 /*
-  Generated class for the ProvidersUserProvider provider.
+  Generated class for the UserProvider provider.
 
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
 */
 @Injectable()
-export class ProvidersUserProvider {  
+export class UserProvider {  
 
   constructor(public httpClient: HttpClient) {   }
 

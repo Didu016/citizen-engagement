@@ -18,32 +18,38 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'register.html',
 })
 export class RegisterPage {
-  firstName: string;
-  lastName: string;
-  role: string;
+  user: User;
   staff: boolean;
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams,
               private userProvider: UserProvider,
               private httpClient: HttpClient) {
-                this.firstName = '';
-                this.lastName = '';
-                this.role = 'staff';
+                this.user = {
+                  name: '',    
+                  password: '',
+                  firstname: '',
+                  lastname: '',
+                  phone: '',
+                  roles: ['citizen']
+                }
                 this.staff = false;
                 
 
   }
 
   ionViewDidLoad() {
-    this.userProvider.getUser().subscribe(users => console.log(users));
+    console.log("ViewDidLoad registerPage");    
   }
 
   updateRole(){
-    if (this.staff)
-      this.role = 'staff';
-    else
-      this.role = 'citizen';
+    if (this.staff){      
+      this.user.roles.push('staff');
+    }      
+    else{
+      this.user.roles = ['citizen'];
+    }    
+      
   }
 
   addUser(user: User): Observable<User>{

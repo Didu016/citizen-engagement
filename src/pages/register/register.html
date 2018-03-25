@@ -17,27 +17,27 @@
       <ion-list>
             <ion-item>
                     <ion-label color="primary">Username</ion-label>
-                    <ion-input placeholder='ex: \"Jdoe\"' [(ngModel)]='name'></ion-input>
+                    <ion-input placeholder='ex: \"Jdoe\"' [(ngModel)]='user.name'></ion-input>
             </ion-item>
             <ion-item>
                     <ion-label fixed>Password</ion-label>
-                    <ion-input type="password"></ion-input>
+                    <ion-input type="password" [(ngModel)]='user.password'></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label color="primary">FirstName</ion-label>
-                <ion-input placeholder='ex: \"John\"' [(ngModel)]='firstName'></ion-input>
+                <ion-input placeholder='ex: \"John\"' [(ngModel)]='user.firstname'></ion-input>
             </ion-item>
             <ion-item>
                 <ion-label color="primary">Lastname</ion-label>
-                <ion-input placeholder='ex: \"Doe\"' [(ngModel)]='lastName'></ion-input>
+                <ion-input placeholder='ex: \"Doe\"' [(ngModel)]='user.lastname'></ion-input>
             </ion-item>
             <ion-item>
                     <ion-label color="primary">Phone Number</ion-label>
-                    <ion-input placeholder='ex: \"(460) 614-2120\"' [(ngModel)]='lastName'></ion-input>
+                    <ion-input placeholder='ex: \"(460) 614-2120\"' [(ngModel)]='user.phone'></ion-input>
                 </ion-item>
             <ion-item>
                 <ion-label>Manager</ion-label>
-                <ion-checkbox [(ngModel)]="manager" (ionChange)="updateRole()"></ion-checkbox>
+                <ion-checkbox [(ngModel)]="staff" (ionChange)="updateRole()"></ion-checkbox>                
             </ion-item>        
             <button ion-button>Submit</button> 
       </ion-list>      

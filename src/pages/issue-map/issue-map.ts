@@ -8,6 +8,7 @@ import { latLng, Map, MapOptions, marker, Marker, tileLayer } from 'leaflet';
 //Cicci 
 import { Geolocation } from '@ionic-native/geolocation';
 import { Issue } from '../../models/issue/issue';
+import { DetailsPage } from '../details/details';
 
 /**
  * Generated class for the IssueMapPage page.
@@ -25,6 +26,19 @@ export class IssueMapPage {
   mapMarkers: Marker[];
   map: Map;
   issues: Issue[];
+
+  
+  goToDetails(i) {
+    alert("l'index de l'élément cliqué est le : "+i);
+    console.log("l'indexe de l'élément cliqué est le : "+i);
+
+    console.log()
+    this.navCtrl.push(DetailsPage);
+  }
+
+  displayIssue(i){
+    alert("l'index de l'élément cliqué est le : "+i);
+  }
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams, 
@@ -46,6 +60,8 @@ export class IssueMapPage {
       marker([ 46.780796, 6.647395 ]),
       marker([ 46.784992, 6.652267 ])
     ];
+
+
   }
 
   ionViewDidLoad() {
@@ -77,5 +93,4 @@ export class IssueMapPage {
       console.log(`Map moved to ${center.lng}, ${center.lat}`);
     });
   }
-
 }

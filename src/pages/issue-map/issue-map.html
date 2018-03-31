@@ -5,20 +5,40 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
     <ion-title>IssueMap</ion-title>
+    <ion-buttons end>
+        <button ion-button icon-only (click)='logOut()'>
+          <ion-icon name='log-out'></ion-icon>
+        </button>
+      </ion-buttons>
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content padding>
+    <ion-fab>
+        <button ion-fab mini><ion-icon name="funnel" role="img" aria-label="filtrer" ng-reflect-name="filtrer" ></ion-icon></button>
+    </ion-fab>
   <div class='map' leaflet 
     [leafletOptions]='mapOptions' [leafletLayers]='mapMarkers'
     (leafletMapReady)='onMapReady($event)'>
   </div>
   <div class="issues">
-      <button *ngFor='let issue of issues' ion-button full>{{issue.description}}</button>
-  </div>
+      <div class="issue-buttons" *ngFor='let issue of issues; let i = index' (click)='goToDetails(i)'>
+
+          <button class="btn_issue" *ngIf="issue.state == 'new'"  [ngStyle]="{'background-color' : '#499349'}" 
+             ion-button full>{{issue.issueType.name}} - {{issue.creator.name}} - @ {{issue.state}} @</button>
+
+          <button class="btn_issue" *ngIf="issue.state == 'inProgress'"  [ngStyle]="{'background-color' : '#ff9900'}" 
+             ion-button full>{{issue.issueType.name}} - {{issue.creator.name}} - @ {{issue.state}} @</button>
+
+          <button class="btn_issue" *ngIf="issue.state == 'rejected'"  [ngStyle]="{'background-color' : '#8B0000'}" 
+             ion-button full>{{issue.issueType.name}} - {{issue.creator.name}} - @ {{issue.state}} @</button>
+
+          <button class="btn_issue" *ngIf="issue.state == 'complted'"  [ngStyle]="{'background-color' : 'grey'}" 
+             ion-button full>{{issue.issueType.name}} - {{issue.creator.name}} - @ {{issue.state}} @</button>
+
+        </div> 
+  </div>  
 </ion-content>

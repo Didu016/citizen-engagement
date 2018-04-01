@@ -2,6 +2,12 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { DetailsPage } from '../details/details';
 
+import { HttpClient } from '@angular/common/http';
+import { config } from './../../app/config';
+import { IssueProvider } from './../../providers/providers-issue/providers-issue';
+import { Issue } from '../../models/issue/issue';
+
+
 /**
  * Generated class for the IssueListPage page.
  *
@@ -14,15 +20,34 @@ import { DetailsPage } from '../details/details';
   templateUrl: 'issue-list.html',
 })
 export class IssueListPage {
+  issues: Issue[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  selectedIssue : Issue;
+
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public http: HttpClient,
+              public issueProvider: IssueProvider) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad IssueListPage');
+        //Load issues
+        this.issueProvider.getIssues().subscribe(issues => {
+          console.log(issues);
+          this.issues = issues;
+        }, err => {
+          console.warn('Could not get issues', err);
+        });
   }
 
-  goToDetails() {
+  /* onSelect(issue: Issue): void {
+    this.issues = issue;
+    console.log(this.issues);
+  } */
+
+  goToDetails(issue:Issue):void {
+    console.log(Issue);
     this.navCtrl.push(DetailsPage);
   }
 

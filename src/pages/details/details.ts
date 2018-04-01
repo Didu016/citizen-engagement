@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
+import { Issue } from '../../models/issue/issue';
+import { IssueProvider } from './../../providers/providers-issue/providers-issue';
+import { HttpClient } from '@angular/common/http';
+import { config } from './../../app/config';
+
 /**
  * Generated class for the DetailsPage page.
  *

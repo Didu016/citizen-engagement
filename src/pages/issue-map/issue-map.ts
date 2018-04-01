@@ -25,26 +25,16 @@ export class IssueMapPage {
   mapOptions: MapOptions;
   mapMarkers: Marker[];
   map: Map;
-  issues: Issue[];
 
   
-  goToDetails(i) {
-    alert("l'index de l'élément cliqué est le : "+i);
-    console.log("l'indexe de l'élément cliqué est le : "+i);
-
-    console.log()
+  goToDetails() {
     this.navCtrl.push(DetailsPage);
-  }
-
-  displayIssue(i){
-    alert("l'index de l'élément cliqué est le : "+i);
   }
 
   constructor(public navCtrl: NavController, 
               public navParams: NavParams, 
               private geolocation: Geolocation,
-              public http: HttpClient,
-              public issueProvider: IssueProvider,) {
+              ) {
     const tileLayerUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     const tileLayerOptions = { maxZoom: 18 };
     this.mapOptions = {
@@ -61,20 +51,10 @@ export class IssueMapPage {
       marker([ 46.784992, 6.652267 ])
     ];
 
-
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad IssueMapPage');
-
-    //Load issues
-    this.issueProvider.getIssues().subscribe(issues => {
-      console.log(issues);
-      this.issues = issues;
-    }, err => {
-      console.warn('Could not get issues', err);
-    });
-    
+    console.log('ionViewDidLoad IssueMapPage');   
 
     //Cicci
     const geolocationPromise = this.geolocation.getCurrentPosition();

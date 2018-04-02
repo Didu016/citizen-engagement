@@ -20,9 +20,10 @@ import { AuthProvider } from '../../providers/auth/auth';
   templateUrl: 'details.html',
 })
 export class DetailsPage {
-  issue: Issue[]; 
+  issue: Issue;
 
-  constructor(private auth: AuthProvider,public navCtrl: NavController,
+  constructor(private auth: AuthProvider,
+              public navCtrl: NavController,
               public navParams: NavParams,
               private issueProvider: IssueProvider) {
               this.issue = this.navParams.data;
@@ -30,6 +31,7 @@ export class DetailsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetailsPage');
+    console.log(this.issue.tags[0]);
   }
 
   displayCommentaries(issue :Issue) {

@@ -1,6 +1,5 @@
 <!--
   Generated template for the DetailsPage page.
-
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
@@ -26,9 +25,8 @@
       <ion-textarea name = 'description' value = {{issue.description}} readonly = true></ion-textarea>
   </ion-item>
 
-  <ion-item>
-    <ion-tags-input name = 'tags' [readonly] = "true"></ion-tags-input>
-    <ion-tags-input  name = 'tags' [placeholder]="'add tag'" [once]="'true'"></ion-tags-input>
+  <ion-item>    
+    <ion-tags-input  [(ngModel)]="issue.tags" name = 'tags' [readonly]='true'></ion-tags-input>
   </ion-item>
 
   <ion-item *ngIf="issue.imageUrl">

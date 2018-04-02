@@ -24,21 +24,5 @@
     [leafletOptions]='mapOptions' [leafletLayers]='mapMarkers'
     (leafletMapReady)='onMapReady($event)'>
   </div>
-  <div class="issues">
-      <div class="issue-buttons" *ngFor='let issue of issues; let i = index' (click)='goToDetails(i)'>
-
-          <button class="btn_issue" *ngIf="issue.state === 'new'"  [ngStyle]="{'background-color' : '#499349'}" 
-             ion-button full>{{issue.issueType.name}} - {{issue.creator.name}} - @ {{issue.state}} @</button>
-
-          <button class="btn_issue" *ngIf="issue.state === 'inProgress'"  [ngStyle]="{'background-color' : '#ff9900'}" 
-             ion-button full>{{issue.issueType.name}} - {{issue.creator.name}} - @ {{issue.state}} @</button>
-
-          <button class="btn_issue" *ngIf="issue.state === 'rejected'"  [ngStyle]="{'background-color' : '#8B0000'}" 
-             ion-button full>{{issue.issueType.name}} - {{issue.creator.name}} - @ {{issue.state}} @</button>
-
-          <button class="btn_issue" *ngIf="issue.state === 'resolved'"  [ngStyle]="{'background-color' : 'grey'}" 
-             ion-button full>{{issue.issueType.name}} - {{issue.creator.name}} - @ {{issue.state}} @</button>
-
-        </div> 
-  </div>  
+  <page-issue-list></page-issue-list>  
 </ion-content>

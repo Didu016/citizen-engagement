@@ -14,15 +14,32 @@
         </button>
       </ion-buttons>
   </ion-navbar>
-
 </ion-header>
-
-
 <ion-content padding>
-  Details
   <ion-item>
-      <ion-label>{{issuetype.name}}</ion-label>
-      <ion-input></ion-input>
+      <ion-label>Status : </ion-label>
   </ion-item>
+  <ion-item>
+      <ion-label floating>Description</ion-label>
+      <ion-textarea name = 'description'></ion-textarea>
+  </ion-item>
+
+  <ion-item>
+    <ion-tags-input name = 'tags'></ion-tags-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-img width="80" height="80" src="..."></ion-img>
+  </ion-item>  
+
+  <button name="btn_addCommentary" ion-button>
+      <ion-icon ></ion-icon>
+      Add commentary
+  </button>
+    
+  <button name="btn_displayAllCommentaries" ion-button>
+      <ion-icon ></ion-icon>
+      Display All commentaries
+  </button>
 
 </ion-content>

@@ -37,6 +37,7 @@ selectedIssue : Issue;
           console.log(issues);
           this.issues = issues;
           console.log(this.issues);
+
         }, err => {
           console.warn('Could not get issues', err);
         });

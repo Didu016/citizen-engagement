@@ -4,6 +4,7 @@ import { config } from './../../app/config';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { latLng, Map, MapOptions, marker, Marker, tileLayer } from 'leaflet';
+import { Headers } from '@angular/http';
 
 //Cicci 
 import { Geolocation } from '@ionic-native/geolocation';
@@ -56,7 +57,6 @@ export class IssueMapPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad IssueMapPage');   
-
     //Cicci
     const geolocationPromise = this.geolocation.getCurrentPosition();
     geolocationPromise.then(position => {

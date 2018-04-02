@@ -31,7 +31,7 @@
         <button class="btn_issue" *ngIf="issue.state == 'rejected'"  [ngStyle]="{'background-color' : '#8B0000'}" 
            ion-button full>{{issue.issueType.name}} - {{issue.creator.name}} - @ {{issue.state}} @</button>
 
-        <button class="btn_issue" *ngIf="issue.state == 'complted'"  [ngStyle]="{'background-color' : 'grey'}" 
+        <button class="btn_issue" *ngIf="issue.state == 'resolved'"  [ngStyle]="{'background-color' : 'grey'}" 
            ion-button full>{{issue.issueType.name}} - {{issue.creator.name}} - @ {{issue.state}} @</button>
 
       </div> 

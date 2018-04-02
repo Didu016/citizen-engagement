@@ -9,6 +9,7 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { Camera } from '@ionic-native/camera';
 import { Geolocation } from '@ionic-native/geolocation';
 import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
 
 import {IonTagsInputModule} from "ionic-tags-input";
 

@@ -1,3 +1,4 @@
+import { IssueListPage } from './../issue-list/issue-list';
 import { IssueProvider } from './../../providers/providers-issue/providers-issue';
 import { HttpClient } from '@angular/common/http';
 import { config } from './../../app/config';
@@ -20,12 +21,13 @@ import { DetailsPage } from '../details/details';
 
 @Component({
   selector: 'page-issue-map',
-  templateUrl: 'issue-map.html',
+  templateUrl: 'issue-map.html',  
 })
 export class IssueMapPage {
   mapOptions: MapOptions;
   mapMarkers: Marker[];
   map: Map;
+  issues: Issue[];
 
   
   goToDetails() {
@@ -35,6 +37,7 @@ export class IssueMapPage {
   constructor(public navCtrl: NavController, 
               public navParams: NavParams, 
               private geolocation: Geolocation,
+              public issueProvider: IssueProvider                          
               ) {
     const tileLayerUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     const tileLayerOptions = { maxZoom: 18 };
@@ -45,12 +48,7 @@ export class IssueMapPage {
       zoom: 16,
       center: latLng(46.778186, 6.641524)
     };
-
-    this.mapMarkers = [
-      marker([ 46.778186, 6.641524 ]).bindTooltip('Hello'),
-      marker([ 46.780796, 6.647395 ]),
-      marker([ 46.784992, 6.652267 ])
-    ];
+    this.mapMarkers=[];
 
   }
 
@@ -64,6 +62,14 @@ export class IssueMapPage {
     }).catch(err => {
       console.warn(`Could not retrieve user position because: ${err.message}`);
     });
+
+    this.issueProvider.getIssues().subscribe(HTTPissues => {
+      this.issues = HTTPissues.body;
+      this.issues.forEach(issue =>{
+        this.generateMarker(issue).addTo(this.map);
+      })
+    });
+
   }
 
   onMapReady(map: Map) {
@@ -71,6 +77,14 @@ export class IssueMapPage {
     this.map.on('moveend', () => {
       const center = this.map.getCenter();
       console.log(`Map moved to ${center.lng}, ${center.lat}`);
+    });
+  }
+  
+  generateMarker(issue: Issue){
+    return marker([issue.location.coordinates[1],issue.location.coordinates[0]]).bindTooltip(issue.description).on('click',()=>{
+      console.log(issue);
+      this.navCtrl.push(DetailsPage, issue);
+
     });
   }
 }

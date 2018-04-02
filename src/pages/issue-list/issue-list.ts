@@ -34,7 +34,7 @@ export class IssueListPage {
     console.log('ionViewDidLoad IssueListPage');
         //Load issues
         this.issueProvider.getIssues().subscribe(HTTPissues => {
-          console.log(HTTPissues);
+          console.log(HTTPissues.headers.get("Pagination-Total"));
           this.issues = HTTPissues.body;
         }, err => {
           console.warn('Could not get issues', err);

@@ -11,7 +11,6 @@ import { Headers } from '@angular/http';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Issue } from '../../models/issue/issue';
 import { DetailsPage } from '../details/details';
-import { IssueListPage } from '../issue-list/issue-list';
 
 /**
  * Generated class for the IssueMapPage page.
@@ -80,7 +79,8 @@ export class IssueMapPage {
       console.log(`Map moved to ${center.lng}, ${center.lat}`);
     });
   }
-  
+
+  //Gaved By Sami Othmane @https://github.com/samivnt/tango
   generateMarker(issue: Issue){
     return marker([issue.location.coordinates[1],issue.location.coordinates[0]]).bindTooltip(issue.description).on('click',()=>{
       console.log(issue);

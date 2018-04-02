@@ -30,6 +30,7 @@ import { IssueProvider } from '../providers/providers-issue/providers-issue';
 import { PictureProvider } from '../providers/picture/picture';
 import { IssueTypeProvider } from '../providers/issue-type/providers-issue-type';
 import { IssueCommentProvider } from '../providers/providers-issue-comment/providers-issue-comment';
+import { FiltersComponent } from '../components/components-filters/components-filters';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { IssueCommentProvider } from '../providers/providers-issue-comment/provi
     IssueMapPage,
     LoginPage,
     DetailsPage,
-    RegisterPage
+    RegisterPage,
+    FiltersComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +64,8 @@ import { IssueCommentProvider } from '../providers/providers-issue-comment/provi
     IssueMapPage,
     LoginPage,
     DetailsPage,
-    RegisterPage
+    RegisterPage,
+    FiltersComponent
   ],
   providers: [
     Geolocation,
@@ -77,6 +80,9 @@ import { IssueCommentProvider } from '../providers/providers-issue-comment/provi
     PictureProvider,
     IssueTypeProvider,
     IssueCommentProvider
-  ]
+  ],
+  exports: [
+		IssueListPage,
+	]
 })
 export class AppModule {}

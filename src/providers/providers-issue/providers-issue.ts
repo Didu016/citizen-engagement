@@ -1,3 +1,4 @@
+import { IssueResponse } from './../../models/issue/issue-response';
 import { config } from './../../app/config';
 import { Issue } from './../../models/issue/issue';
 import { Observable } from 'rxjs/Rx';
@@ -19,16 +20,15 @@ export class IssueProvider {
     console.log('Hello IssueProvider Provider');
   }
 
-  getIssues(): Observable<HttpResponse<Issue[]>> {    
-    return this.httpClient.get<Issue[]>(
+  getIssues(): Observable<HttpResponse<IssueResponse[]>> {    
+    return this.httpClient.get<IssueResponse[]>(
       apiIssue + '?include=creator&include=issueType', 
-      {observe: 'response' } )
-      .do(console.log);
+      {observe: 'response' } )      
   }
 
-  addIssue(issue: Issue):  Observable<Issue> {
+  addIssue(issue: Issue):  Observable<IssueResponse> {
     let newIssue;
-     this.httpClient.post<Issue>(apiIssue, issue).subscribe(response => {
+     this.httpClient.post<IssueResponse>(apiIssue, issue).subscribe(response => {
       newIssue = response;
       console.log(newIssue);
      }, err => {

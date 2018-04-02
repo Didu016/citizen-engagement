@@ -1,11 +1,13 @@
+import { FiltersComponent } from './../../components/components-filters/components-filters';
 import { IssueListPage } from './../issue-list/issue-list';
 import { IssueProvider } from './../../providers/providers-issue/providers-issue';
 import { HttpClient } from '@angular/common/http';
 import { config } from './../../app/config';
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { latLng, Map, MapOptions, marker, Marker, tileLayer } from 'leaflet';
 import { Headers } from '@angular/http';
+import { PopoverController } from 'ionic-angular';
 
 //Cicci 
 import { AuthProvider } from '../../providers/auth/auth';
@@ -19,7 +21,6 @@ import { DetailsPage } from '../details/details';
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
-
 @Component({
   selector: 'page-issue-map',
   templateUrl: 'issue-map.html',  
@@ -40,7 +41,8 @@ export class IssueMapPage {
               public navCtrl: NavController, 
               public navParams: NavParams, 
               private geolocation: Geolocation,
-              public issueProvider: IssueProvider                          
+              public issueProvider: IssueProvider,
+              public popoverCtrl: PopoverController                          
               ) {
     const tileLayerUrl = 'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
     const tileLayerOptions = { maxZoom: 18 };
@@ -89,6 +91,13 @@ export class IssueMapPage {
       console.log(issue);
       this.navCtrl.push(DetailsPage, issue);
 
+    });
+  }
+
+  presentPopover(myEvent) {
+    let popover = this.popoverCtrl.create(FiltersComponent);
+    popover.present({
+      ev: myEvent
     });
   }
 

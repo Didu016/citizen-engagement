@@ -20,9 +20,9 @@ import { Issue } from '../../models/issue/issue';
   templateUrl: 'issue-list.html',
 })
 export class IssueListPage {
-  issues: Issue[];
+issues: Issue[];  
 
-  selectedIssue : Issue;
+selectedIssue : Issue;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -36,18 +36,18 @@ export class IssueListPage {
         this.issueProvider.getIssues().subscribe(issues => {
           console.log(issues);
           this.issues = issues;
+          console.log(this.issues);
         }, err => {
           console.warn('Could not get issues', err);
         });
   }
-
-  /* onSelect(issue: Issue): void {
-    this.issues = issue;
+  
+  goToDetails(issue :Issue) {
     console.log(this.issues);
-  } */
-
-  goToDetails(issue:Issue):void {
-    console.log(Issue);
+    console.log(this.selectedIssue);
+    console.log("break");
+    this.selectedIssue = issue;
+    console.log(this.selectedIssue);
     this.navCtrl.push(DetailsPage);
   }
 

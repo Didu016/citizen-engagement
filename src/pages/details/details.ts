@@ -8,6 +8,7 @@ import { IssueProvider } from './../../providers/providers-issue/providers-issue
 import { HttpClient } from '@angular/common/http';
 import { config } from './../../app/config';
 import { IssueResponse } from '../../models/issue/issue-response';
+import { AuthProvider } from '../../providers/auth/auth';
 
 /**
  * Generated class for the DetailsPage page.
@@ -23,7 +24,8 @@ import { IssueResponse } from '../../models/issue/issue-response';
 export class DetailsPage {
   issue: IssueResponse;
 
-  constructor(public navCtrl: NavController,
+  constructor(private auth: AuthProvider,
+              public navCtrl: NavController,
               public navParams: NavParams,
               private issueProvider: IssueProvider,
               private IssueCommentProvider: IssueCommentProvider) {
@@ -45,7 +47,11 @@ export class DetailsPage {
       console.log('Issue comments loaded', issueComments);            
     }, err => {
       console.warn('Could not get issue types', err);
-    });
+    });  
   }
-
+  
+  //Method to log out.
+  logOut() {
+    this.auth.logOut();
+  }
 }

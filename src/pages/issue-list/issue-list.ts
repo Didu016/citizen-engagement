@@ -6,6 +6,7 @@ import { HttpClient } from '@angular/common/http';
 import { config } from './../../app/config';
 import { IssueProvider } from './../../providers/providers-issue/providers-issue';
 import { Issue } from '../../models/issue/issue';
+import { AuthProvider } from '../../providers/auth/auth';
 
 
 /**
@@ -22,7 +23,8 @@ import { Issue } from '../../models/issue/issue';
 export class IssueListPage {
 issues: Issue[];  
 
-  constructor(public navCtrl: NavController,
+  constructor(private auth: AuthProvider,
+              public navCtrl: NavController,
               public navParams: NavParams,
               public http: HttpClient,
               public issueProvider: IssueProvider) {
@@ -42,5 +44,9 @@ issues: Issue[];
   goToDetails(issue :Issue) {
     this.navCtrl.push(DetailsPage, issue);
   }
+    //Method to log out.
+    logOut() {
+      this.auth.logOut();
+    }
 
 }

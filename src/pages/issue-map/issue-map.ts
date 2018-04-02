@@ -8,6 +8,7 @@ import { latLng, Map, MapOptions, marker, Marker, tileLayer } from 'leaflet';
 import { Headers } from '@angular/http';
 
 //Cicci 
+import { AuthProvider } from '../../providers/auth/auth';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Issue } from '../../models/issue/issue';
 import { DetailsPage } from '../details/details';
@@ -34,7 +35,9 @@ export class IssueMapPage {
     this.navCtrl.push(DetailsPage);
   }
 
-  constructor(public navCtrl: NavController, 
+  constructor(
+              private auth: AuthProvider,
+              public navCtrl: NavController, 
               public navParams: NavParams, 
               private geolocation: Geolocation,
               public issueProvider: IssueProvider                          
@@ -87,5 +90,10 @@ export class IssueMapPage {
       this.navCtrl.push(DetailsPage, issue);
 
     });
+  }
+
+  //Method to log out.
+  logOut() {
+    this.auth.logOut();
   }
 }

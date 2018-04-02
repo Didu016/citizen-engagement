@@ -6,6 +6,7 @@ import { Issue } from '../../models/issue/issue';
 import { IssueProvider } from './../../providers/providers-issue/providers-issue';
 import { HttpClient } from '@angular/common/http';
 import { config } from './../../app/config';
+import { AuthProvider } from '../../providers/auth/auth';
 
 /**
  * Generated class for the DetailsPage page.
@@ -19,8 +20,9 @@ import { config } from './../../app/config';
   templateUrl: 'details.html',
 })
 export class DetailsPage {
-  issue: Issue;
-  constructor(public navCtrl: NavController,
+  issue: Issue[]; 
+
+  constructor(private auth: AuthProvider,public navCtrl: NavController,
               public navParams: NavParams,
               private issueProvider: IssueProvider) {
               this.issue = this.navParams.data;
@@ -32,6 +34,11 @@ export class DetailsPage {
 
   displayCommentaries(issue :Issue) {
     this.navCtrl.push(CommentariesPage, issue);
+  }
+
+  //Method to log out.
+  logOut() {
+    this.auth.logOut();
   }
 
 }

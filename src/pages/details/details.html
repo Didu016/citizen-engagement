@@ -6,7 +6,7 @@
 -->
 <ion-header>
   <ion-navbar>
-    <ion-title>DetailsPage</ion-title>
+    <ion-title>Details</ion-title>
     <ion-buttons end>
         <button ion-button icon-only (click)='logOut()'>
           <ion-icon name='log-out'></ion-icon>
@@ -15,7 +15,7 @@
   </ion-navbar>
 </ion-header>
 <ion-content padding>
-  <ion-item>
+  <ion-item >
       <ion-label>Status : {{issue.state}} </ion-label>
   </ion-item>
   <ion-item>
@@ -23,15 +23,16 @@
 </ion-item>
   <ion-item>
       <ion-label floating>Description</ion-label>
-      <ion-textarea name = 'description' value = {{issue.description}} ></ion-textarea>
+      <ion-textarea name = 'description' value = {{issue.description}} readonly = true></ion-textarea>
   </ion-item>
 
   <ion-item>
-    <ion-tags-input name = 'tags' ></ion-tags-input>
+    <ion-tags-input name = 'tags' [readonly] = "true"></ion-tags-input>
+    <ion-tags-input  name = 'tags' [placeholder]="'add tag'" [once]="'true'"></ion-tags-input>
   </ion-item>
 
-  <ion-item>
-    <ion-img *ngIf="issue.imageUrl" src={{issue.imageUrl}}></ion-img>
+  <ion-item *ngIf="issue.imageUrl">
+    <ion-img  src={{issue.imageUrl}}></ion-img>
   </ion-item>  
     
   <button name="btn_addViewCommentaries" (click)='displayCommentaries(issue)' ion-button>

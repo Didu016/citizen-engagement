@@ -20,6 +20,7 @@ import { config } from './../../app/config';
 })
 export class DetailsPage {
   issue: Issue;
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private issueProvider: IssueProvider) {
@@ -28,6 +29,7 @@ export class DetailsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetailsPage');
+    console.log(this.issue.tags[0]);
   }
 
   displayCommentaries(issue :Issue) {

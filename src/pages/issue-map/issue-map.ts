@@ -11,6 +11,7 @@ import { Headers } from '@angular/http';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Issue } from '../../models/issue/issue';
 import { DetailsPage } from '../details/details';
+import { IssueListPage } from '../issue-list/issue-list';
 
 /**
  * Generated class for the IssueMapPage page.

@@ -40,10 +40,7 @@
     </ion-item>
 
     <!--HASHTAG link https://www.npmjs.com/package/ionic-tags-input-->
-    <ion-tags-input 
-    [(ngModel)]="newIssue.tags" 
-    name = 'tags'
-    [placeholder]="'add tag'"></ion-tags-input>
+    <ion-tags-input [(ngModel)]="newIssue.tags" name = 'tags' [placeholder]="'add tag'" [once]="'true'"></ion-tags-input>
 
     <button id="btn_takePicture" ion-button type="button" (click)='takePicture()'>
       <ion-icon ios="ios-camera" md="md-camera"></ion-icon>

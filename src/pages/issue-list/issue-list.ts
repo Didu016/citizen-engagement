@@ -20,9 +20,7 @@ import { Issue } from '../../models/issue/issue';
   templateUrl: 'issue-list.html',
 })
 export class IssueListPage {
-  issues: Issue[];
-
-  selectedIssue : Issue;
+issues: Issue[];  
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -32,23 +30,17 @@ export class IssueListPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad IssueListPage');
-        //Load issues
+        //Load Issue
         this.issueProvider.getIssues().subscribe(HTTPissues => {
-          console.log(HTTPissues.headers.get("Pagination-Total"));
+          console.log(HTTPissues.body);
           this.issues = HTTPissues.body;
         }, err => {
           console.warn('Could not get issues', err);
         });
   }
-
-  /* onSelect(issue: Issue): void {
-    this.issues = issue;
-    console.log(this.issues);
-  } */
-
-  goToDetails(issue:Issue):void {
-    console.log(Issue);
-    this.navCtrl.push(DetailsPage);
+  
+  goToDetails(issue :Issue) {
+    this.navCtrl.push(DetailsPage, issue);
   }
 
 }

@@ -22,8 +22,6 @@ import { Issue } from '../../models/issue/issue';
 export class IssueListPage {
 issues: Issue[];  
 
-selectedIssue : Issue;
-
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public http: HttpClient,
@@ -32,15 +30,9 @@ selectedIssue : Issue;
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad IssueListPage');
-        //Load issues
-/* <<<<<<< HEAD
-        this.issueProvider.getIssues().subscribe(issues => {
-          console.log(issues);
-          this.issues = issues;
-          console.log(this.issues);
-======= */
+        //Load Issue
         this.issueProvider.getIssues().subscribe(HTTPissues => {
-          console.log(HTTPissues);
+          console.log(HTTPissues.body);
           this.issues = HTTPissues.body;
         }, err => {
           console.warn('Could not get issues', err);
@@ -48,12 +40,7 @@ selectedIssue : Issue;
   }
   
   goToDetails(issue :Issue) {
-    console.log(this.issues);
-    console.log(this.selectedIssue);
-    console.log("break");
-    this.selectedIssue = issue;
-    console.log(this.selectedIssue);
-    this.navCtrl.push(DetailsPage);
+    this.navCtrl.push(DetailsPage, issue);
   }
 
 }

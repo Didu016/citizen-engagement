@@ -17,6 +17,7 @@ import { HomePage } from '../pages/home/home';
 import { RegisterPage } from './../pages/register/register';
 import { LoginPage } from './../pages/login/login';
 import { CreateIssuePage } from '../pages/create-issue/create-issue';
+import { CommentariesPage } from '../pages/commentaries/commentaries';
 import { IssueListPage } from '../pages/issue-list/issue-list';
 import { IssueMapPage } from '../pages/issue-map/issue-map';
 import { AuthProvider } from '../providers/auth/auth';
@@ -33,6 +34,7 @@ import { IssueTypeProvider } from '../providers/issue-type/providers-issue-type'
     MyApp,
     HomePage,
     CreateIssuePage, // TODO: add the components to "declarations".
+    CommentariesPage,
     IssueListPage,
     IssueMapPage,
     LoginPage,
@@ -53,6 +55,7 @@ import { IssueTypeProvider } from '../providers/issue-type/providers-issue-type'
     MyApp,
     HomePage,
     CreateIssuePage, // TODO: add the components to "entryComponents".
+    CommentariesPage,
     IssueListPage,
     IssueMapPage,
     LoginPage,

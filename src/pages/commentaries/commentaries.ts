@@ -1,24 +1,22 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
-import { CommentariesPage } from '../commentaries/commentaries';
+import {NavController, NavParams } from 'ionic-angular';
 
 import { Issue } from '../../models/issue/issue';
 import { IssueProvider } from './../../providers/providers-issue/providers-issue';
 import { HttpClient } from '@angular/common/http';
 import { config } from './../../app/config';
-
 /**
- * Generated class for the DetailsPage page.
+ * Generated class for the CommentariesPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
  */
 
 @Component({
-  selector: 'page-details',
-  templateUrl: 'details.html',
+  selector: 'page-commentaries',
+  templateUrl: 'commentaries.html',
 })
-export class DetailsPage {
+export class CommentariesPage {
   issue: Issue;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -27,11 +25,7 @@ export class DetailsPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad DetailsPage');
-  }
-
-  displayCommentaries(issue :Issue) {
-    this.navCtrl.push(CommentariesPage, issue);
+    console.log('ionViewDidLoad CommentariesPage');
   }
 
 }

@@ -29,6 +29,7 @@ import { UserProvider } from '../providers/providers-user/providers-user';
 import { IssueProvider } from '../providers/providers-issue/providers-issue';
 import { PictureProvider } from '../providers/picture/picture';
 import { IssueTypeProvider } from '../providers/issue-type/providers-issue-type';
+import { IssueCommentProvider } from '../providers/providers-issue-comment/providers-issue-comment';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { IssueTypeProvider } from '../providers/issue-type/providers-issue-type'
     UserProvider,
     IssueProvider,
     PictureProvider,
-    IssueTypeProvider
+    IssueTypeProvider,
+    IssueCommentProvider
   ]
 })
 export class AppModule {}

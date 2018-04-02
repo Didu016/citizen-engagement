@@ -1,11 +1,13 @@
+import { IssueCommentProvider} from './../../providers/providers-issue-comment/providers-issue-comment';
+import { Issue } from './../../models/issue/issue';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { CommentariesPage } from '../commentaries/commentaries';
 
-import { Issue } from '../../models/issue/issue';
 import { IssueProvider } from './../../providers/providers-issue/providers-issue';
 import { HttpClient } from '@angular/common/http';
 import { config } from './../../app/config';
+import { IssueResponse } from '../../models/issue/issue-response';
 
 /**
  * Generated class for the DetailsPage page.
@@ -19,21 +21,31 @@ import { config } from './../../app/config';
   templateUrl: 'details.html',
 })
 export class DetailsPage {
-  issue: Issue;
+  issue: IssueResponse;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
-              private issueProvider: IssueProvider) {
+              private issueProvider: IssueProvider,
+              private IssueCommentProvider: IssueCommentProvider) {
               this.issue = this.navParams.data;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetailsPage');
-    console.log(this.issue.tags[0]);
+    console.log("en dessous l'issue");
+    console.log(this.issue);     
   }
 
   displayCommentaries(issue :Issue) {
     this.navCtrl.push(CommentariesPage, issue);
+  }
+
+  getComments(issue: IssueResponse){
+    this.IssueCommentProvider.getCommentsIssue(this.issue).subscribe(issueComments => {
+      console.log('Issue comments loaded', issueComments);            
+    }, err => {
+      console.warn('Could not get issue types', err);
+    });
   }
 
 }

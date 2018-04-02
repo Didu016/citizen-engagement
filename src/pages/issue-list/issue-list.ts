@@ -33,11 +33,15 @@ selectedIssue : Issue;
   ionViewDidLoad() {
     console.log('ionViewDidLoad IssueListPage');
         //Load issues
+/* <<<<<<< HEAD
         this.issueProvider.getIssues().subscribe(issues => {
           console.log(issues);
           this.issues = issues;
           console.log(this.issues);
-
+======= */
+        this.issueProvider.getIssues().subscribe(HTTPissues => {
+          console.log(HTTPissues);
+          this.issues = HTTPissues.body;
         }, err => {
           console.warn('Could not get issues', err);
         });

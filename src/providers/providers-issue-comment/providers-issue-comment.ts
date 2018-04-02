@@ -1,4 +1,5 @@
-import { IssueComments } from './../../models/issue-comments/issue-comments-response';
+import { IssueCommentsResponse } from './../../models/issue-comments/issue-comments-response';
+import { IssueComments } from './../../models/issue-comments/issue-comments';
 import { config } from './../../app/config';
 import { Observable } from 'rxjs/Observable';
 import { IssueResponse } from './../../models/issue/issue-response';
@@ -20,8 +21,19 @@ export class IssueCommentProvider {
     console.log('Hello ProvidersIssueCommentProvider Provider');
   }
 
-  getCommentsIssue(issue: IssueResponse): Observable<IssueComments[]> {
-    return this.httpClient.get<IssueComments[]>(apiIssue + issue.id + '/comments');        
+  getCommentsIssue(issue: IssueResponse): Observable<IssueCommentsResponse[]> {
+    return this.httpClient.get<IssueCommentsResponse[]>(apiIssue + issue.id + '/comments');        
+  }
+
+  addCommentsIssue(issueComments: IssueComments, issue: IssueResponse):  Observable<IssueResponse> {
+    let newComments;    
+     this.httpClient.post<IssueComments>(apiIssue + issue.id + '/comments', issueComments).subscribe(response => {
+      newComments = response;
+      console.log(newComments);
+     }, err => {
+      console.warn('Could not post the comments', err);
+    });
+     return newComments;
   }
 
 }

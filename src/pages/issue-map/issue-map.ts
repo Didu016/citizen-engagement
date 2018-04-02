@@ -4,6 +4,7 @@ import { config } from './../../app/config';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { latLng, Map, MapOptions, marker, Marker, tileLayer } from 'leaflet';
+import { Headers } from '@angular/http';
 
 //Cicci 
 import { Geolocation } from '@ionic-native/geolocation';
@@ -68,9 +69,9 @@ export class IssueMapPage {
     console.log('ionViewDidLoad IssueMapPage');
 
     //Load issues
-    this.issueProvider.getIssues().subscribe(issues => {
-      console.log(issues);
-      this.issues = issues;
+    this.issueProvider.getIssues().subscribe(HTTPissues => {
+      console.log(HTTPissues);
+      this.issues = HTTPissues.body;
     }, err => {
       console.warn('Could not get issues', err);
     });

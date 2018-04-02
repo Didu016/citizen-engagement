@@ -1,7 +1,7 @@
 import { config } from './../../app/config';
 import { Issue } from './../../models/issue/issue';
 import { Observable } from 'rxjs/Rx';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 const apiIssue = `${config.apiUrl}/issues`;
@@ -19,8 +19,11 @@ export class IssueProvider {
     console.log('Hello IssueProvider Provider');
   }
 
-  getIssues(): Observable<Issue[]> {
-    return this.httpClient.get<Issue[]>(apiIssue + '?include=creator&include=issueType' );
+  getIssues(): Observable<HttpResponse<Issue[]>> {    
+    return this.httpClient.get<Issue[]>(
+      apiIssue + '?include=creator&include=issueType', 
+      {observe: 'response' } )
+      .do(console.log);
   }
 
   addIssue(issue: Issue):  Observable<Issue> {

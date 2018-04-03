@@ -5,6 +5,14 @@
   Ionic pages and navigation.
  -->
 <ion-content padding>
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+          pullingText="Pull to refresh"
+          pullingIcon="arrow-dropdown"
+          refreshingSpinner="circles"
+          refreshingText="..fetching">
+        </ion-refresher-content>
+      </ion-refresher> 
   <div class="issues">
     <div class="issue-buttons" *ngFor='let issue of issues' (click)='goToDetails(issue)'>
 

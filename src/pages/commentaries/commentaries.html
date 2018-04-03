@@ -18,7 +18,15 @@
       </ion-item>
       <button ion-button block type="submit" [disabled]='createCommentaryForm.invalid'>Add commentary</button>
     </form>
-    <ion-label floating>Others commentaries</ion-label>    
+    <ion-label floating>Others commentaries</ion-label>  
+      <ion-refresher (ionRefresh)="doRefresh($event)">
+        <ion-refresher-content
+          pullingText="Pull to refresh"
+          pullingIcon="arrow-dropdown"
+          refreshingSpinner="circles"
+          refreshingText="..fetching">
+        </ion-refresher-content>
+      </ion-refresher>  
       <div class="commentaries">
         <div *ngFor='let issueComm of issueComments'>
           <ion-item>

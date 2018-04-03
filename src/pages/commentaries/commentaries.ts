@@ -23,6 +23,7 @@ export class CommentariesPage {
   issue: IssueResponse;
   issueComments:IssueComments[];
   newComment: IssueComments; 
+
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private issueProvider: IssueProvider,
@@ -31,9 +32,20 @@ export class CommentariesPage {
                 this.newComment = {
                   text: ''
                 };
-                this.issue = this.navParams.data;              
+                this.issue = this.navParams.data;  
+                this.doRefresh(0);            
               }
-
+  doRefresh(refresher) {
+    this.IssueCommentProvider.getCommentsIssue(this.issue).subscribe(issueComments => {
+      console.log('Issue comments loaded', issueComments);
+      this.issueComments = issueComments;
+    }, err => {
+      console.warn('Could not get issue types', err);
+    });  
+    if(refresher !=0)
+      refresher.complete();
+  }
+              
   ionViewDidLoad() {
     console.log('ionViewDidLoad CommentariesPage');
     console.log("Issue en cours: ",this.issue);

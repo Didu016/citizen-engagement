@@ -26,13 +26,17 @@ export class CommentariesPage {
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               private issueProvider: IssueProvider,
-              private IssueCommentProvider: IssueCommentProvider) {
-              this.issue = this.navParams.data;
-  }
+              private IssueCommentProvider: IssueCommentProvider) 
+              {
+                this.newComment = {
+                  text: ''
+                };
+                this.issue = this.navParams.data;              
+              }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CommentariesPage');
-    console.log(this.issue);
+    console.log("Issue en cours: ",this.issue);
     this.getComments(this.issue);
   }
 
@@ -47,10 +51,10 @@ export class CommentariesPage {
 
   addCommentsIssue(form: NgForm) {
     if (form.valid){
-      console.log(this.newComment);
-      console.log(form.value);
-      this.IssueCommentProvider.addCommentsIssue(this.newComment,this.issue);
-      this.navCtrl.setRoot(this.navCtrl.getActive().component);
+      console.log("Comment envoyé: ",this.newComment);
+      console.log("Form value: ",form.value);
+      console.log("Issue envoyé: ",this.issue);
+      this.IssueCommentProvider.addCommentsIssue(this.newComment,this.issue);                  
     }
   }
 

@@ -12,15 +12,6 @@
 
 </ion-header>
 
-<ion-tab title="Trucks" icon-off="baldeo" icon-on="baldeoON" href="#/tab/darsenas">  
-</ion-tab>
-
-<ion-tab title="Tanks" icon-off="manguera" icon-on="mangueraON" href="#/tab/baldeos">  
-</ion-tab>
-
-<ion-tab title="Map Tanks" icon-off="map" icon-on="mapON" href="#/tab/mapa">  
-</ion-tab>
-
 
 <ion-content padding>
     <form #createIssueTypeForm='ngForm' (submit)='sendIssueType(createIssueTypeForm)'>
@@ -46,4 +37,16 @@
     
     
       </form>
+      <!-- <div class="issueTypes">     
+          <div*ngFor='let issueType of issueTypes'>               
+              <ion-item>
+                  <ion-label>name</ion-label>
+                  <ion-input [readonly]='true'name = 'name'>{{issueType.name}}</ion-input>                      
+              </ion-item>
+              <ion-item>
+                    <ion-label floating>Description</ion-label>
+                    <ion-textarea name = 'description' value = {{issueType.description}} readonly = true></ion-textarea>
+              </ion-item>
+          </div> -->
+                            
 </ion-content>

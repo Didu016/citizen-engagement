@@ -22,7 +22,7 @@ export class IssueTypeProvider {
       return this.httpClient.get<IssueTypeResponse>(config.apiUrl + '/issueTypes' );    
   }
 
-  addIssue(issueType: IssueType):  Observable<IssueTypeResponse> {
+  addIssueType(issueType: IssueType):  Observable<IssueTypeResponse> {
     let newIssueType;
      this.httpClient.post<IssueTypeResponse>(apiIssueType, issueType).subscribe(response => {
       newIssueType = response;

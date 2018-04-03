@@ -1,9 +1,9 @@
+import { IssueType } from './../../models/issue-type/issue-type';
 import { NgForm } from '@angular/forms';
 import { IssueTypeProvider } from './../../providers/issue-type/providers-issue-type';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { IssueTypeResponse } from '../../models/issue-type/issue-type-response';
-import { IssueType } from '../../models/issue-type/issue-type';
 
 /**
  * Generated class for the EditIssueTypePage page.
@@ -36,6 +36,7 @@ export class EditIssueTypePage {
     this.IssueTypeProvider.getIssueType().subscribe(issueTypes => {
       console.log('Issue types loaded', issueTypes);
       this.issueTypes = issueTypes;      
+      console.log('Issue types loaded', this.issueTypes);
     }, err => {
       console.warn('Could not get issue types', err);
     }); 
@@ -45,7 +46,7 @@ export class EditIssueTypePage {
     if (form.valid){
       console.log(this.newIssueType);
       console.log(form.value);
-      this.IssueTypeProvider.addIssue(this.newIssueType);
+      this.IssueTypeProvider.addIssueType(this.newIssueType);
     }
   }
 

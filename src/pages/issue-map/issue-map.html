@@ -16,13 +16,14 @@
 </ion-header>
 
 
-<ion-content padding>
-    <ion-fab>
-        <button ion-fab mini><ion-icon name="funnel" role="img" aria-label="filtrer" ng-reflect-name="filtrer" ></ion-icon></button>
-    </ion-fab>
+<ion-content>      
   <div class='map' leaflet 
     [leafletOptions]='mapOptions' [leafletLayers]='mapMarkers'
-    (leafletMapReady)='onMapReady($event)'>
+    (leafletMapReady)='onMapReady($event)'>       
   </div>
-  <page-issue-list></page-issue-list>  
+  <div id="filter">
+      <button ion-fab mini (click)="presentPopover($event)">
+          <ion-icon name="funnel" role="img" aria-label="filtrer" ng-reflect-name="filtrer"></ion-icon>
+        </button>
+  </div>         
 </ion-content>

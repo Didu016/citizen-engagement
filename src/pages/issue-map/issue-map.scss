@@ -5,4 +5,11 @@ page-issue-map {
       .btn_issue{
           text-transform: none;
       }
+      #filter{
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        padding: 10px;
+        z-index: 400;
+      }
 }

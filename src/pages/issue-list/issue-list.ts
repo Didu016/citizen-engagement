@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, IonicPage } from 'ionic-angular';
 import { DetailsPage } from '../details/details';
 
 import { HttpClient } from '@angular/common/http';
@@ -7,6 +7,8 @@ import { config } from './../../app/config';
 import { IssueProvider } from './../../providers/providers-issue/providers-issue';
 import { Issue } from '../../models/issue/issue';
 import { AuthProvider } from '../../providers/auth/auth';
+
+import { NgModule } from '@angular/core';
 
 
 /**
@@ -32,21 +34,27 @@ issues: Issue[];
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad IssueListPage');
-        //Load Issue
-        this.issueProvider.getIssues().subscribe(HTTPissues => {
-          console.log(HTTPissues.body);
-          this.issues = HTTPissues.body;
-        }, err => {
-          console.warn('Could not get issues', err);
-        });
+    //Load Issue
+    this.getIssuesList();
+              
+  }
+  
+  getIssuesList(){
+    this.issueProvider.getIssues().subscribe(HTTPissues => {
+      console.log(HTTPissues);
+      this.issues = HTTPissues.body;
+    }, err => {
+      console.warn('Could not get issues', err);
+    });
   }
   
   goToDetails(issue :Issue) {
     this.navCtrl.push(DetailsPage, issue);
   }
-    //Method to log out.
-    logOut() {
-      this.auth.logOut();
-    }
+
+  //Method to log out.
+  logOut() {
+    this.auth.logOut();
+  }
 
 }

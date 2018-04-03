@@ -1,11 +1,9 @@
 import { IssueProvider } from './../../providers/providers-issue/providers-issue';
-import { Point } from 'geojson';
 import { IssueType } from './../../models/issue-type/issue-type';
 import { IssueTypeProvider } from './../../providers/issue-type/providers-issue-type';
 import { Issue } from './../../models/issue/issue';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { config } from '../../app/config';
 import { Geolocation } from '@ionic-native/geolocation';
 import { NgForm } from '@angular/forms';
 
@@ -48,7 +46,7 @@ export class CreateIssuePage {
     private camera: Camera,
     private pictureService: PictureProvider,
     private IssueTypeProvider: IssueTypeProvider,
-    private IssueProvider: IssueProvider
+    private IssueProvider: IssueProvider        
   ) {
     this.newIssue = {
       description: '',

@@ -6,7 +6,7 @@
  -->
 <ion-content padding>
   <div class="issues">
-    <div class="issue-buttons" *ngFor='let issue of issues; let i = index' (click)='goToDetails(issue)'>
+    <div class="issue-buttons" *ngFor='let issue of issues' (click)='goToDetails(issue)'>
 
         <button class="btn_issue" *ngIf="issue.state == 'new'"  [ngStyle]="{'background-color' : '#499349'}" 
            ion-button full>{{issue.issueType.name}} - {{issue.creator.name}} - {{issue.state}} - {{issue.createdAt | date: 'dd/MM/yyyy H:mm'}}</button>

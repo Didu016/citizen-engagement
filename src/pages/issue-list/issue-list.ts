@@ -30,6 +30,17 @@ issues: Issue[];
               public navParams: NavParams,
               public http: HttpClient,
               public issueProvider: IssueProvider) {
+              this.doRefresh(0);
+  }
+  doRefresh(refresher) {
+    this.issueProvider.getIssues().subscribe(HTTPissues => {
+      console.log(HTTPissues);
+      this.issues = HTTPissues.body;
+    }, err => {
+      console.warn('Could not get issues', err);
+    });
+    if(refresher !=0)
+      refresher.complete();
   }
 
   ionViewDidLoad() {

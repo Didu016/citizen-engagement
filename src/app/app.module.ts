@@ -24,6 +24,7 @@ import { IssueMapPage } from '../pages/issue-map/issue-map';
 import { AuthProvider } from '../providers/auth/auth';
 import { DetailsPage } from '../pages/details/details';
 import { EditIssueTypePage } from '../pages/edit-issue-type/edit-issue-type';
+import { IntroPage } from '../pages/intro/intro';
 
 import { AuthInterceptorProvider } from '../providers/auth-interceptor/auth-interceptor';
 import { UserProvider } from '../providers/providers-user/providers-user';
@@ -45,16 +46,20 @@ import { FiltersComponent } from '../components/components-filters/components-fi
     DetailsPage,
     RegisterPage,
     EditIssueTypePage,
+    IntroPage,
     FiltersComponent
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
     HttpClientModule,
-    IonicStorageModule.forRoot(),
     LeafletModule.forRoot(),
     IonTagsInputModule,
-    FormsModule   
+    FormsModule,
+    IonicStorageModule.forRoot({
+      name: '__mydb',
+      driverOrder: ['indexeddb', 'sqlite', 'websql']
+    })   
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -68,6 +73,7 @@ import { FiltersComponent } from '../components/components-filters/components-fi
     DetailsPage,
     RegisterPage,
     EditIssueTypePage,
+    IntroPage,
     FiltersComponent
   ],
   providers: [
@@ -82,7 +88,9 @@ import { FiltersComponent } from '../components/components-filters/components-fi
     IssueProvider,
     PictureProvider,
     IssueTypeProvider,
-    IssueCommentProvider
+    IssueCommentProvider,
+    Storage,
+    {provide: ErrorHandler, useClass: IonicErrorHandler }
   ],
   exports: [
 		IssueListPage

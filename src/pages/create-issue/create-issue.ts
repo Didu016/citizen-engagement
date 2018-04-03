@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { Geolocation } from '@ionic-native/geolocation';
 import { NgForm } from '@angular/forms';
+import { IntroPage } from '../../pages/intro/intro';
 
 
 // Other imports...
@@ -15,6 +16,7 @@ import { HttpClient } from '@angular/common/http';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { QimgImage } from '../../models/qimg/qimg-image';
 import { PictureProvider } from '../../providers/picture/picture';
+import { Storage } from '@ionic/storage';
 
 
 /**
@@ -46,7 +48,8 @@ export class CreateIssuePage {
     private camera: Camera,
     private pictureService: PictureProvider,
     private IssueTypeProvider: IssueTypeProvider,
-    private IssueProvider: IssueProvider        
+    private IssueProvider: IssueProvider,
+    public storage: Storage        
   ) {
     this.newIssue = {
       description: '',
@@ -63,14 +66,21 @@ export class CreateIssuePage {
       tags: this.tags,
     }
   }
-
-
+  
   //Method to log out.
   logOut() {
     this.auth.logOut();
   }
 
   ionViewDidLoad() {
+
+    this.storage.get('intro-done').then(done => {
+      if (!done) {
+        this.storage.set('intro-done', true);
+        this.navCtrl.setRoot(IntroPage);
+      }
+    });
+
     console.log('ionViewDidLoad CreateIssuePage');
     console.log(this.newIssue);
     console.log(this.auth);

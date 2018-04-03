@@ -23,31 +23,41 @@ export class FiltersComponent {
 
   constructor(private navController: NavController, 
     private navParams: NavParams,
-    public viewCtrl: ViewController) {
+    public viewCtrl: ViewController,
+    private IssueProvider: IssueProvider) {
     console.log('Hello ComponentsFiltersComponent Component');
-    console.log(this.navParams.data);
-    this.allIssues = [];
-    this.issueToSend = [];
+    console.log(this.navParams.data);    
+  }
+
+  ionViewDidLoad() {
+    console.log('Hello ionViewDidLoad');
+    this.IssueProvider.getIssues().subscribe(HTTPissues => {
+      console.log(HTTPissues);
+      this.allIssues = HTTPissues.body;
+      console.log("allIssuesFirst", this.allIssues);
+    }, err => {
+      console.warn('Could not get issues', err);
+    });
   }
 
   sortBy(state: String){
+    this.issueToSend = [];    
     console.log(state);
-    if (state === 'new' || state === 'inProgress' || state === 'rejected' || state === 'resolved'){      
-      this.allIssues = this.navParams.data;
+    if (state === 'new' || state === 'inProgress' || state === 'rejected' || state === 'resolved'){            
       this.allIssues.forEach(issue => {
         if(issue.state === state)
           this.issueToSend.push(issue);
       });
-      console.log(this.issueToSend);
+      console.log("issuetoSend",this.issueToSend);
       this.viewCtrl.dismiss(this.issueToSend);
       
     }
     if (state === 'all' && this.allIssues.length != 0){
-      console.log(this.allIssues);
+      console.log("allIssues",this.allIssues);
       this.viewCtrl.dismiss(this.allIssues);
     }
     else if (state === 'all' && this.allIssues.length == 0){
-      console.log(this.navParams.data);
+      console.log("navParamsdata",this.navParams.data);
       this.viewCtrl.dismiss();
     }                    
   }

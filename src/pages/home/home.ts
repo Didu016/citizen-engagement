@@ -6,6 +6,7 @@ import { NavController } from 'ionic-angular';
 import { CreateIssuePage } from '../create-issue/create-issue';
 import { IssueMapPage } from '../issue-map/issue-map';
 import { IssueListPage } from '../issue-list/issue-list';
+import { EditIssueTypePage } from '../edit-issue-type/edit-issue-type';
 
 // TODO: add an interface to represent a tab.
 export interface HomePageTab {
@@ -28,7 +29,8 @@ export class HomePage {
     this.tabs = [
       { title: 'New Issue', icon: 'add', component: CreateIssuePage },
       { title: 'Issue Map', icon: 'map', component: IssueMapPage },
-      { title: 'Issue List', icon: 'list', component: IssueListPage }
+      { title: 'Issue List', icon: 'list', component: IssueListPage },
+      { title: 'Edit Issue Type', icon: 'settings', component: EditIssueTypePage }
     ];
   }
 

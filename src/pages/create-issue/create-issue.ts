@@ -73,6 +73,7 @@ export class CreateIssuePage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad CreateIssuePage');
     console.log(this.newIssue);
+    console.log(this.auth);
 
     //Load issue types
     this.IssueTypeProvider.getIssueType().subscribe(issueTypes => {

@@ -29,8 +29,9 @@
     <ion-tags-input  [(ngModel)]="issue.tags" name = 'tags' [readonly]='true'></ion-tags-input>
   </ion-item>
 
-  <ion-item *ngIf="issue.imageUrl">
-    <ion-img  src={{issue.imageUrl}}></ion-img>
+  <ion-item>
+    <ion-img  *ngIf="issue.imageUrl" src={{issue.imageUrl}}></ion-img>
+    <ion-icon *ngIf="!issue.imageUrl" ion-icon name="image"> No image uploaded</ion-icon>
   </ion-item>  
     
   <button name="btn_addViewCommentaries" (click)='displayCommentaries(issue)' ion-button>

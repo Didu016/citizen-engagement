@@ -23,6 +23,7 @@ import { IssueListPage } from '../pages/issue-list/issue-list';
 import { IssueMapPage } from '../pages/issue-map/issue-map';
 import { AuthProvider } from '../providers/auth/auth';
 import { DetailsPage } from '../pages/details/details';
+import { EditIssueTypePage } from '../pages/edit-issue-type/edit-issue-type';
 
 import { AuthInterceptorProvider } from '../providers/auth-interceptor/auth-interceptor';
 import { UserProvider } from '../providers/providers-user/providers-user';
@@ -43,6 +44,7 @@ import { FiltersComponent } from '../components/components-filters/components-fi
     LoginPage,
     DetailsPage,
     RegisterPage,
+    EditIssueTypePage,
     FiltersComponent
   ],
   imports: [
@@ -65,6 +67,7 @@ import { FiltersComponent } from '../components/components-filters/components-fi
     LoginPage,
     DetailsPage,
     RegisterPage,
+    EditIssueTypePage,
     FiltersComponent
   ],
   providers: [
@@ -82,7 +85,7 @@ import { FiltersComponent } from '../components/components-filters/components-fi
     IssueCommentProvider
   ],
   exports: [
-		IssueListPage,
+		IssueListPage
 	]
 })
 export class AppModule {}

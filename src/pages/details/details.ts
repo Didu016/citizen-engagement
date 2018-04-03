@@ -32,6 +32,7 @@ export class DetailsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetailsPage');
+    console.log(this.issue);
   }
 
   displayCommentaries(issue :Issue) {

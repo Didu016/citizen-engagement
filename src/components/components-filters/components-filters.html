@@ -1,7 +1,8 @@
 <ion-list>
     <ion-list-header>Filter by State</ion-list-header>
-    <button ion-item (click)="close()">new</button>
-    <button ion-item (click)="close()">inProgress</button>
-    <button ion-item (click)="close()">rejected</button>
-    <button ion-item (click)="close()">resolved</button>
+    <button ion-item (click)='sortBy("all")'>All</button>
+    <button ion-item (click)='sortBy("new")'>new</button>
+    <button ion-item (click)='sortBy("inProgress")'>inProgress</button>
+    <button ion-item (click)='sortBy("rejected")'>rejected</button>
+    <button ion-item (click)='sortBy("resolved")'>resolved</button>
   </ion-list>

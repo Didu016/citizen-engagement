@@ -13,6 +13,7 @@ import { PopoverController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
 import { Geolocation } from '@ionic-native/geolocation';
 import { Issue } from '../../models/issue/issue';
+import { IssueResponse } from './../../models/issue/issue-response';
 import { DetailsPage } from '../details/details';
 
 /**
@@ -29,7 +30,7 @@ export class IssueMapPage {
   mapOptions: MapOptions;
   mapMarkers: Marker[];
   map: Map;
-  issues: Issue[];
+  issues: IssueResponse[];
 
   
   goToDetails() {
@@ -73,7 +74,7 @@ export class IssueMapPage {
       this.issues.forEach(issue =>{
         this.generateMarker(issue).addTo(this.map);
       })
-    });
+    });     
 
   }
 
@@ -95,7 +96,20 @@ export class IssueMapPage {
   }
 
   presentPopover(myEvent) {
-    let popover = this.popoverCtrl.create(FiltersComponent);
+    console.log(this.issues);
+    let popover = this.popoverCtrl.create(FiltersComponent, this.issues);
+
+    popover.onDidDismiss((data) => {
+      console.log("back to the map page");
+      this.issues = data;
+      console.log(this.issues);
+      console.log(marker);
+      this.issues.forEach(issue =>{
+        this.generateMarker(issue).addTo(this.map);
+      })
+      console.log(marker);                                   
+    });
+
     popover.present({
       ev: myEvent
     });

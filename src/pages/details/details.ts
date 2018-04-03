@@ -1,4 +1,3 @@
-import { IssueCommentProvider} from './../../providers/providers-issue-comment/providers-issue-comment';
 import { Issue } from './../../models/issue/issue';
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
@@ -27,28 +26,18 @@ export class DetailsPage {
   constructor(private auth: AuthProvider,
               public navCtrl: NavController,
               public navParams: NavParams,
-              private issueProvider: IssueProvider,
-              private IssueCommentProvider: IssueCommentProvider) {
+              private issueProvider: IssueProvider) {
               this.issue = this.navParams.data;
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DetailsPage');
-    this.getComments(this.issue);
   }
 
   displayCommentaries(issue :Issue) {
     this.navCtrl.push(CommentariesPage, issue);
   }
-
-  getComments(issue: IssueResponse){
-    this.IssueCommentProvider.getCommentsIssue(this.issue).subscribe(issueComments => {
-      console.log('Issue comments loaded', issueComments);            
-    }, err => {
-      console.warn('Could not get issue types', err);
-    });  
-  }
-  
+    
   //Method to log out.
   logOut() {
     this.auth.logOut();

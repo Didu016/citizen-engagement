@@ -9,21 +9,21 @@
     <ion-title>Add / View commentaries</ion-title>    
   </ion-navbar>
 </ion-header>
-<ion-content padding>
-  <form #createCommentaryForm='ngForm' (submit)='addCommentsIssue(createCommentaryForm)'>
-    <ion-item>
-      <ion-label floating>Your commentary</ion-label>
-      <ion-textarea [(ngModel)]='issue.commentary' name = 'text'></ion-textarea>
-    </ion-item>
-    <button ion-button block type="submit" [disabled]='createCommentaryForm.invalid'>Add commentary</button>
-  </form>
-  <ion-label floating>Others commentaries</ion-label>
 
-  <div class="commentaries">
-    <div *ngFor='let issueComm of issueComments'>
+<ion-content padding>  
+    <form #createCommentaryForm='ngForm' (submit)='addCommentsIssue(createCommentaryForm)'>
       <ion-item>
-        <ion-textarea name = 'description' value = {{issue.description}} readonly = true></ion-textarea>
+        <ion-label floating>Your commentary</ion-label>
+        <ion-textarea [(ngModel)]='newComment.text' name = 'text' required></ion-textarea>
       </ion-item>
-    </div> 
-  </div>
+      <button ion-button block type="submit" [disabled]='createCommentaryForm.invalid'>Add commentary</button>
+    </form>
+    <ion-label floating>Others commentaries</ion-label>    
+      <div class="commentaries">
+        <div *ngFor='let issueComm of issueComments'>
+          <ion-item>
+            <ion-textarea name = 'commentaire' value = {{issueComm.text}} readonly = 'true'></ion-textarea>
+          </ion-item>
+        </div> 
+      </div>
 </ion-content>

@@ -35,6 +35,7 @@ export class DetailsPage {
   }
 
   displayCommentaries(issue :Issue) {
+    console.log(issue);
     this.navCtrl.push(CommentariesPage, issue);
   }
     

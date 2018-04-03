@@ -72,9 +72,12 @@ export class IssueMapPage {
     this.issueProvider.getIssues().subscribe(HTTPissues => {
       this.issues = HTTPissues.body;
       this.issues.forEach(issue =>{
-        this.generateMarker(issue).addTo(this.map);
-      })
-    });     
+        this.generateMarker(issue);
+      }) 
+      this.addMarkerToMap(this.mapMarkers);
+    });
+    
+    console.log("MapMarkers:",this.mapMarkers);
 
   }
 
@@ -87,11 +90,20 @@ export class IssueMapPage {
   }
 
   //Gaved By Sami Othmane @https://github.com/samivnt/tango
-  generateMarker(issue: Issue){
-    return marker([issue.location.coordinates[1],issue.location.coordinates[0]]).bindTooltip(issue.description).on('click',()=>{
-      console.log(issue);
-      this.navCtrl.push(DetailsPage, issue);
+  generateMarker(issue: IssueResponse){
+    this.mapMarkers
+    .push(marker([issue.location.coordinates[1],issue.location.coordinates[0]])
+      .bindTooltip(issue.description)
+      .on('click',()=>{
+        console.log(issue);
+        this.navCtrl.push(DetailsPage, issue);
+      })
+    );    
+  }
 
+  addMarkerToMap(mapMarkersToAdd: Marker[]){
+    mapMarkersToAdd.forEach(marker => {
+      this.map.addLayer(marker);
     });
   }
 
@@ -100,14 +112,18 @@ export class IssueMapPage {
     let popover = this.popoverCtrl.create(FiltersComponent, this.issues);
 
     popover.onDidDismiss((data) => {
-      console.log("back to the map page");
-      this.issues = data;
-      console.log(this.issues);
-      console.log(marker);
-      this.issues.forEach(issue =>{
-        this.generateMarker(issue).addTo(this.map);
-      })
-      console.log(marker);                                   
+        if (data !== null){
+          console.log("back to the map page");
+          this.issues = data;
+          console.log("Issues filtered",this.issues);
+          this.mapMarkers = [];
+          console.log("Empty MapMarkers:",this.mapMarkers);
+          this.issues.forEach(issue =>{
+            this.generateMarker(issue);
+          }) 
+          this.addMarkerToMap(this.mapMarkers);
+          console.log("Filtered MapMarkers:",this.mapMarkers);
+      }                                           
     });
 
     popover.present({

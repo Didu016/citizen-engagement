@@ -12,7 +12,38 @@
 
 </ion-header>
 
+<ion-tab title="Trucks" icon-off="baldeo" icon-on="baldeoON" href="#/tab/darsenas">  
+</ion-tab>
+
+<ion-tab title="Tanks" icon-off="manguera" icon-on="mangueraON" href="#/tab/baldeos">  
+</ion-tab>
+
+<ion-tab title="Map Tanks" icon-off="map" icon-on="mapON" href="#/tab/mapa">  
+</ion-tab>
+
 
 <ion-content padding>
-
+    <form #createIssueTypeForm='ngForm' (submit)='sendIssueType(createIssueTypeForm)'>
+        <ion-title>Let's create an issue type</ion-title>
+    
+        <ion-item>
+            <ion-label>Issue Type</ion-label>
+            <ion-input
+            [(ngModel)]='newIssueType.name'
+            name = 'name' max-length=25 required></ion-input>                      
+          </ion-item>      
+    
+        <ion-item>
+          <ion-label floating>Description</ion-label>
+          <ion-textarea 
+          [(ngModel)]='newIssueType.description'
+          name = 'description' max-length=1000></ion-textarea>
+        </ion-item>            
+    
+        <img *ngIf='pictureData' src='data:image/jpeg;base64,{{ pictureData }}' />
+    
+        <button ion-button block type="submit" [disabled]='createIssueTypeForm.invalid'>Create issue</button>
+    
+    
+      </form>
 </ion-content>

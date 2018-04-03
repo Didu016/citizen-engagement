@@ -1,8 +1,4 @@
-export class IssueType {    
-    id: string;
-    href: string;
+export class IssueType {        
     name: string;
-    description: string;
-    icon: string;    
-    imageUrl: string;    
+    description: string;            
   }

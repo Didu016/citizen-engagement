@@ -32,11 +32,6 @@ export class IssueMapPage {
   map: Map;
   issues: IssueResponse[];
 
-  
-  goToDetails() {
-    this.navCtrl.push(DetailsPage);
-  }
-
   constructor(
               private auth: AuthProvider,
               public navCtrl: NavController, 
@@ -96,7 +91,7 @@ export class IssueMapPage {
       .bindTooltip(issue.description)
       .on('click',()=>{
         console.log(issue);
-        this.navCtrl.push(DetailsPage, issue);
+        this.goToDetails(issue);        
       })
     );    
   }
@@ -129,6 +124,10 @@ export class IssueMapPage {
     popover.present({
       ev: myEvent
     });
+  }
+
+  goToDetails(issue :Issue) {
+    this.navCtrl.push(DetailsPage, issue);
   }
 
   //Method to log out.

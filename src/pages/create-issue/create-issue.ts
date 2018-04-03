@@ -1,5 +1,4 @@
 import { IssueProvider } from './../../providers/providers-issue/providers-issue';
-import { IssueType } from './../../models/issue-type/issue-type';
 import { IssueTypeProvider } from './../../providers/issue-type/providers-issue-type';
 import { Issue } from './../../models/issue/issue';
 import { Component } from '@angular/core';
@@ -17,6 +16,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { QimgImage } from '../../models/qimg/qimg-image';
 import { PictureProvider } from '../../providers/picture/picture';
 import { Storage } from '@ionic/storage';
+import { IssueTypeResponse } from '../../models/issue-type/issue-type-response';
 
 
 /**
@@ -35,7 +35,7 @@ export class CreateIssuePage {
   pictureData: string;
   picture: QimgImage;
   newIssue: Issue;  
-  issueTypes: IssueType;
+  issueTypes: IssueTypeResponse;
 
   tags = ['Broken','Light','Trouble'];
 

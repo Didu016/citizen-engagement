@@ -14,6 +14,7 @@
     <form #createCommentaryForm='ngForm' (submit)='addCommentsIssue(createCommentaryForm)'>
       <ion-item>
         <ion-label floating>Your commentary</ion-label>
+        <ion-label floating>{{newComment.text}}</ion-label>
         <ion-textarea [(ngModel)]='newComment.text' name = 'text' required></ion-textarea>
       </ion-item>
       <button ion-button block type="submit" [disabled]='createCommentaryForm.invalid'>Add commentary</button>
